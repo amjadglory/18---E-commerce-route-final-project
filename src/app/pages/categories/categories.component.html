@@ -1,0 +1,56 @@
+<section class="py-24 bg-cyan-50 dark:bg-[#28282B]">
+  <div class="container m-auto">
+    <h2 class="text-5xl dark:text-cyan-50 text-cyan-800 text-center">
+      Our Products
+    </h2>
+
+    <div class="inline-flex rounded-md shadow-xs" role="group">
+      <button
+        autofocus
+        (focus)="getAllProductsData()"
+        (click)="categoryProp = '6439d5b90049ad0b52b90048'"
+        (click)="getAllProductsData()"
+        type="button"
+        class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-200 rounded-s-lg hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:bg-cyan-100 focus:text-cyan-700 dark:border-cyan-900 dark:text-cyan-50 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-cyan-500 dark:focus:text-white"
+      >
+        Men
+      </button>
+      <button
+        (click)="categoryProp = '6439d58a0049ad0b52b9003f'"
+        (click)="getAllProductsData()"
+        type="button"
+        class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-200 hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:bg-cyan-100 focus:text-cyan-700 dark:border-cyan-900 dark:text-cyan-50 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-cyan-500 dark:focus:text-white"
+      >
+        Women
+      </button>
+      <button
+        (click)="categoryProp = '6439d2d167d9aa4ca970649f'"
+        (click)="getAllProductsData()"
+        type="button"
+        class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border rounded-e-lg border-gray-200 hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:bg-cyan-100 focus:text-cyan-700 dark:border-cyan-900 dark:text-cyan-50 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-cyan-500 dark:focus:text-white"
+      >
+        Electronics
+      </button>
+    </div>
+
+    <!-- product grid -->
+    @if (!isLoading) {
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10"
+    >
+      @for (product of productList ; track product._id) {
+      <app-card [product]="product"></app-card>
+      }
+    </div>
+    }@else {
+    <div class="h-[500px] w-full flex justify-center items-center">
+      <span
+        ><img
+          class="w-[80px] h-[80px] rotateY animate-bounce"
+          src="/images/logo.png"
+          alt=""
+      /></span>
+    </div>
+    }
+  </div>
+</section>

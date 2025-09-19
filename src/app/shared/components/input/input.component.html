@@ -1,0 +1,76 @@
+<label for="name" class="font-bold text-sm dark:text-cyan-400 text-cyan-600">{{
+  inputLabel
+}}</label>
+<div class="flex relative">
+  <span class="inputIcon"> <i [class]="inputIcon"></i> </span>
+
+  @if (inputOrTextArea === 'input') {
+  <input
+    [formControl]="inputControl"
+    [type]="inputType || (showPass ? 'password' : 'text')"
+    [id]="inputId"
+    class="input"
+    [class]="{
+      'border-green-400': inputControl?.valid,
+      'border-red-400': inputControl?.invalid && inputControl?.touched
+    }"
+    [placeholder]="inputPlaceHolder"
+  />
+  }@else if (inputOrTextArea === 'textArea') {
+  <textarea
+    [formControl]="inputControl"
+    [id]="inputId"
+    class="input"
+    [class]="{
+      'border-green-400': inputControl?.valid,
+      'border-red-400': inputControl?.invalid && inputControl?.touched
+    }"
+    [placeholder]="inputPlaceHolder"
+  ></textarea>
+  } @if(inputId === 'password' || inputId == 'rePassword'){
+  <span (click)="showPass = !showPass" class="absolute top-1/5 end-3">
+    @if (showPass) {
+    <i class="fas fa-eye text-green-400 text-[14px]"></i>
+    }@else {
+    <i class="fas fa-eye-slash text-red-500 text-[14px]"></i>
+    }
+  </span>
+  }
+</div>
+@if (inputControl?.errors && inputControl?.touched) {
+<div
+  class="flex mt-0.5 py-2 px-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-red-100 dark:text-red-600"
+  role="alert"
+>
+  <svg
+    class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path
+      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+    />
+  </svg>
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+    <ul class="mt-1.5 list-disc list-inside">
+      @if (inputControl?.hasError('required')) {
+      <li>This Field Is Required</li>
+      }@else if (inputControl?.hasError('minlength')) {
+      <li>At Least 3 Lowercase Character</li>
+      }@else if(inputControl?.hasError('maxlength')) {
+      <li>Not More Than 20 Lowercase Character</li>
+      }@else if(inputControl?.hasError('email')) {
+      <li>Please Enter A Valid Email</li>
+      }@else if(inputControl?.hasError('pattern')) {
+      <li><ng-content /></li>
+      }@else if(inputControl?.hasError('missMatch')) {
+      <li>Password Confirmation Is Incorrect</li>
+      }
+    </ul>
+  </div>
+</div>
+}

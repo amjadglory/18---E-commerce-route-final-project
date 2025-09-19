@@ -1,0 +1,365 @@
+(1) e-comerce app
+1. authintication login/signup
+2. guard
+3. payment methods
+4. producte view with details
+5. brands section
+6. categores section
+7. main slider and category slider
+8. cart section
+9. favorite section
+10. 404 page
+
+(2) how to start a project
+1. product maneger :> هو الشخص اللى بيقعد مع العميل يفهم العميل محتاج ايه فالموقع بتاعه,و يفهم منه تجربه المستخدم بالكامل عاوزها تكون عاملها ازاى عن طريق حاجه اسمها user stories
+2. user stories :> هى السمات و الخصائص اللى المستخدم بيمر بيها خلال استخدامه للموقع
+3. working method :>
+    - water flow :> دى فيها كل مهندس بينتظر التانى يخلص شغلو عشان يبدا هو , يعنى الفرونت و الباك يستنو المصمم انه يخلص تصميم  و لعد كدا الفرونت يستنا الباك يخلص الداتا بيز و البعد كدا الفرونت يبدا شغل و دا شئ مش حلو لان ممكن الناس تتزنق فالوقت خصوصا بتوع الفرونت لانهم اخر ناس بتبتسلم
+    - sprints :> هنا بنقسم المشروع كللو لتاسككات صغسؤه المصمم يخلص جزء و يسلمو للباك و الفرونت و الاتنين يشستغلو مع بعض و بعد كدا المصمم يبدا فى الجزء اللى بعده و هكذا
+
+(3) frontend start up
+1. reseve the task u have to start from trillo or terra
+2. reseve the figma or the disign file from the uiux let him explain every thing on it
+3. reseve the api from the backend  as a document and test it  with post manor swagger:
+      - u test the get,post,delete
+4. create the project main folder:
+      - install the angular
+      - make the names of the components,interfaces,services, more readable by write it's schematics in the angular.json file
+5. create folder structure:
+      - folder structur is defirence between a company to another, but this is the largest file structure u would create
+      - we will have three main folders in our project to create:
+        1- core/ => we create it in the app folder, it contain all the global services and logic that be loaded once like:
+          * auth/ => login/logout,jwt storage, permissions
+          * interceptors/ => modify or intercept HTTP requests that have errors
+          * guards/ => route protection
+          * services/ => general services only like (LoggerService - ApiService - ThemeService)
+          * models or interfaces/ => global type script interfaces
+          * layouts/ will be explained later
+        2- pages/ => it contains all the pages's components we have in our project
+        3- shared/ => we put on it the reusable UI elements and utilities like:
+          * components/ => it contain the common and reusable components like (the footer and navbar - btns - ..), and  every component will have it's own services,interfaces...
+          * directives/ => it contain the common and reusable directives
+          * pipes/ => it contain the common and reusable pipes
+6. create all the obvios component for now
+      - page folder components :>
+        * most of the time those main component are the one on the navbar exept the login/signup, and u create on it the notfound page and any other page that looks main
+      - shared folder components :>
+        * the navbar and the footer
+      - auth folder components :>
+        * login/register
+7. install the packages
+      - font awesome
+      - tailwind
+      - flowbite
+8. create the routing
+      - here we gonna use the layout routing
+      - the layout routing being used when we have more than build for the website
+      - in this web site for example the nav bar looks deferent when the logged in or not
+      - when the user logged in the nav bar hav all the links on it
+      - but when the use not logged in the nav bar will have the log in and regester  links only
+      * so we have to looks for the website :
+        - one with a navbar that has the pages links
+        - another with a navbar that have only the login / register links
+      * so we create a layout for every look that we have on our website, so now we will create 2 layouts :
+        - auth layout :> will containe :>
+          - the login/register navbar
+          - and ether we put the login page or the regester page under the navbar and replace betweeen them the routeroutlet
+          -an this layout don't have a footer
+        - blank layout :> will contain :>
+          - the normal navbar with the web site links
+          - under the navbar we put the page of any pages of the web site like home,about,cart... and replace betweeen them the routeroutlet
+      * and if there is somthing that show up in bith layout we call it's layout on the app component
+      * also in the end we call the replacce the reouteroutlet of the two layouts in the app component it'self to display the on it
+
+3) Ecommerce app sprint :>
+1. generate the layouts
+2. route the pages:>
+  - we will have a route for every layout and every route will have it's children routes
+    1- the auth route will have the login and the register as a children route
+    2- the blank route will have the pages links as a children route
+  - we can remove the auth or blank's route word in the link by
+3. we call the routeroutlet in the app html to display ether the auth page or the blank page and what they contain
+4. design better navbar/footer
+5. get all products api :>
+  - we have two api to get product , get all products and get a spesific product
+  - to display the product that on the home page we gonna use the get all products api
+  - first we need to test the api in the postman
+  - the back end part the data into pages if the data alote in an object called meta data that describe how he part this data
+  - this api we will use it in multi pages so we need to call it in a service so we can use it in deferent parts in our project
+
+* note * there is somthing called inviroment on it we put two types of all the apis we have from the backend one for the development and one for the production, this inviroments when we finish the project and up it as a production and we need to update somthing in the site we don't update it in the production apis cus it gonna diplay directly in the server and the updates we be shown to the cliet while we working on this updates so we first do the updated on the development api and then we update then we replace the development api with the production api so we display the changes after all the update finish
+
+6. as u know that the api have two parts, base url and the end point, the base url is in every domain for all the website's pages so if the backend change the domain i have to go to every page or place on the web site that we use the base url and edit it, that's why we have to save this domain in a enviroment to use the domain by it and if i wanna change the domain i change it the enviroment that i saved the base url on it,
+as we said that we have the enviroments of development and the production and if we wanna update or edit any thing in the web site i do that in the development enviroment first and if it work will i transfer this edits and updates to the production enviroment,
+so we will create 2 enviroments (development, production), to create enviroment we write in the terminal ng g enviroments, inside every invironment i put the baseUrl for every one
+
+7. for more organized project and to make the pages lazy loaded we will make the popular products a seperate component and the other two section that in the home page with the popular products also
+
+*note* now if u wanna use a sliders flow piite not the only library that have it there's alot of it, the most importent thing when u choose one of them that it have not run by the dom or jquery, it should work with the angular frame work, to make sure  that it work with angular u search for it with npm's website
+
+8. for the home sliders we gonna use the owl library, to install it ther's a step that u have to do that's when the owl site ask u to import the BrowserAnimationsModule, this was being imported at a file was be installed with the angular before version 20 called animation but now this file not being instaled with angular and the we have to instal it maniually so we import this BrowserAnimationsModule  to it so we can use the owl , and to install it u write npm i @angular/animations -legacy-peer-deps and this (-legacy-peer-deps) is make it make the version being old to be the able to instale it
+
+9. now we wanna show a quick look of any product we click on it in another page or in the same page as a pop up
+
+10. in this pop up will have a btn that show a specific description in by open the details page and display on it the data of the product we clicked on it, to get the data of the specific product we clicked on it we will use the get specific product api, this aoi needs the id of the product we wanna show, so we will send it as a parameter in the link  we can use the slug proprty that have the title of the product but the space is - and all the letters are small , the slug we put it in the link to help the seo do it's work well
+
+*note* to put send the id and the slug as params we do this, the param have two types, normal param is a part of the routing code so it means that it will not make enter this specific page unless u send the param with the link u use and it comes after the slash /, the param query is optional param that not have to be sent to enter this page and the routin is not must know about it and put it on it's link and it comes after the Q ?
+
+11. the id we wanna send with the details is a must so we send it as a param not a query param, so we go to the details route and insted of writein only the name of the route (detail) we write /:paramName like this (details/:prodId) and u can name it anything , now this param u named we save the id u send it with the details, and u can add more params as much u want by write /:paramName after the one u create so we gonna ad the slug also like this (details/:prodId/:prodSlug)
+
+12. now if  u try to go to the details page it will show u the not found, cus we didn';t send the param, to add the param u can use the Interpolation binding, but this not a good behavior and open a hack gate, to send it write u use the attr binding to the routerLink attr and equal it to an array, this array take the riutes in order the order u specify in the app.routes so first we send the main path then the first param which is for the prodId and prodSlug, if u wanna open the prod details and shown only the id u can create new route that have the details patth and the id param only
+
+13. now to get this params to get the id from it we use a service called ActivatedRoute, this service bring u all the infos about the route u are in write now, so we gonna inject the ActivateRoute in the details component to get the params thea on it's route
+
+14. now we write a function that get the id from params, on it we call the activatedRoute and use the methods on it, there's a method on it called paramMap and params poth of them returns an observable and give u the params of the route u are on it now, but what is the deferent between the params and paramMap, the params method we use it tell angular 17 then we used the paramMap, the paramMap is more readable than the params method and more safty, so we gonna use the paramMap
+
+15. the paramMap return observable so if there's any changes happens in the route the paramMap notice it by runing the subcribe again, now we can use the subscribe properties like next to get the data on it's parameter and this parameter will take the data from the activetedRoute and save it on it, this data is the params of the route by use the get method that built in on the parameter we create and it return a string or a null, now we call this function in the onInit cus we wanna it run when the route directly opens,
+
+*note* why the data being loged in the terminal like what it happen in the consle of the browser?, this becuse we used the SSR server side rendering  that render the data in the server then render it in the browser, the termenal here is the server side cus we acually use it's server, and then it runs in the browser cus it reseve the data from the server
+
+16. now to safe the id from the activatedRoute service we create a property and give a type of string or null like the data that will return from the get method that give us the data that we gonna reseve from the activatedRoute, and we create this property in the top level and assign the id to it in the service
+
+*interview Q* is there any other way to get data from the activatedRoute service's returned observable insted of subscribe and what is the different between them?
+it's the snapshot method it's easier and readable more but it's don't rerun the code inside it if there's any update to the route we have not like subscribe as we said it rerun the code inside it every time the route change so the observable notice this changes and run it's code depending on this update
+
+17. now lets get the specific product api, this api we will use it once in the details page so we create it's service in the details folder not in the shared folder
+
+18. now we wanna do the pagination, the pagination is that reseve the data in parts and display every page by its number, the backend part the data for u in the api and give u the data of the pages in an object called metadata, in our api there's a route called get all products it has an object called meta data, it contain properties like current page which show u this data in which page and a property called number of pages it gives u the number of all the pages in this object and a proprty called limit it has the limit of data objects that in every page and a proprty called nextpage it show u what is the next page after the one u are in
+
+19. to send the page number to the route we send it as a param called page, and if the page number u send is bigger than the total pages it will give u an empty array property
+
+20. so first lets make the route reseve the rage number param, so this route we used it in the products service to link the api, now we will add to it that we will reseve the param of the page naumber on it, to send this param to the route by a variable from the component we will send it as a function parameter and template leteral i in the route, but now we will have to send this param every time we call it, to svoid that we can give it a defualt valeo if we didn't send the argument it send the defualt value
+
+21. now we go to the product component that we used the getAllProductData funvtion from the api on it by a method inside it called getAllProducs, this function we will use it again later, but with sending a param to the function that will give it to the getAllProducts as an argument to it and send it to the route as a route param, so now every time i call the getAllProductData i will send it an argument and this argument is a value for the param of the function that in the getAllProductData that called getAllProducts to send this argument as a route param in the products service that connct with the getAllProduct api and send this argument as a param, this parameter will give it a defualt value also
+
+22. to create a pagination we will use a package called ngx pagination, we will follow the decomintaion to install, while we install it it will now work with the version of it with version of the angular so we will add the --legacy-peer-deps next to the install code
+
+23. then it will till u to add the pagination module to the component that u will use the pagination on it, but why not in the app.config, that's becouse we will use it in the in this component only, and we will not need it in the whole project, now will use it in the product component
+
+24. now we wil use the pipe that we will explain it later, but we will use this pipe in the decomntaion in arrary u wanna do the pagination on it in the product, this pipe take some values like how much the page contain data, and what is the current page, and what is the how much data in all the pages, this values we havew in the api if u rememper in the meta data object to give this values to the properrties in the product comnponent we will create this proprties in the product component ts and give it';s value from the getAllProductData function from the api
+
+25. now we will have to creat the pagination num,ber it self, the packadge give u the code take it and put it in the product html file in the place u want and we will edit it, to connect the pipe to the pagination tag there's an id in the pipe give it to the pagination tag, delete all the methods in the pagination tag exept the pageChange, this method is an event that run every time there's a number of the page change, so to send this page number we have it in the getAllProductData method in the ts, so we calle it in the pageChange method insted of the one it use, and the page number send by the $event data
+
+26. now lets learn how to deal with forms in angular, forms has two consepts authintcation and authrisation, authintcation is that u create an acuont and log with it, authrisation is the specifing how can reach some part of the web site like if u  are not a user u can't go to any page ecept the authrartion page iif u are a user u can access the auth page and the normal user pages after u login if not login u can't, if u are an admin u can have access to all the pages and the admin pages
+
+27. lets start with  the authration, to create authration page we need forms, and forms in angular have two types, reactive forms and template driven forms,
+  - template driven forms: it's exactly like the two way data binding, it used for the very basic forms like the one input forms that don't need validation or anything
+  - reactive forms: most compnies works with it, it used for the complix forms, it have a ready to use validation, it makes ypur forms more scalable,testable and testable, we use it also with the basic forms thats why we don';t use the template driven forms that much
+
+28. lets talk about the reactive forms with more details, it have three types of it:
+  - formControl: it's the form that have one input
+  - formGroup: it's a group of formControl that mean if u have a form with  more than one input
+  - formArray: it create a dynamic form, it make the user can add another formControm(input) or formGroup(inputs),  it's like a container for a formGroup
+
+29. formControl:
+  - in the html we will  have an input in a form
+  - formControl is a class that we take a copy from it by the new keyword to use it in the ts
+  - in the ts we create the formControl like this Name = new formControl()
+  - in the html input we bind on a property called formControl and  equal it to the name of the form control that we create in th ts
+  -in the formControl class in ts it takes some parameters  optional like, the first parameter takes the initial or defualt value of the input like once u open the input page it hase the defualt value u write in the inoput from the parameter, the second parameter is the validation for this input  and angular has an object called validators tht contain a built in validations if u have one validation u write it as a parameter if it's more than one validation u write them in an array as a parameter and to make the validation required u write ,required after the validator object parameter
+
+30. gormGroup:
+  - in the html we will  have an inputs in a form
+  - in the ts we create a property that takes a copy from the formGroup class and by that we created a formGroup and inside it we put the formControls in an object
+    name = new FormGroup({
+      name: new FormControl(),
+      email: new FormControl(),
+      password: new FormControl(),
+      repassword: new FormControl(),
+    })
+  - in the html we don't bind on the formControl cus now we  don't   try to access a property in the ts no we call one of controlForms that in the formControlName by write the name of the formControl on it, but we have more than on formGroup how to select which one we will use, we bind on the formGroup but in the form tag itself not the input tag
+
+ <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+  Launch
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          Add rows here
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#exampleModal').on('show.bs.modal', event => {
+    var button = $(event.relatedTarget);
+    var modal = $(this);
+    // Use above variables to manipulate the DOM
+
+  });
+</script>
+
+
+
+*INTERVIEW Q*
+1- WHAT IS THE METHODS THAT RUN IN THE SERVER AND WHAT RUN IN THE BROWSER?
+- in SSR the app being run in the server then the browser, so u have to know the methods that u cann't run in the server
+- for example when u put a console method in the ngOnInit it will run normally in the termenal(the server) and the browser also
+- but if u try to put a window method in the ngOnInit it will send u an error in the server but will work in the browser(the window) , and the error that in the server will say to u that the window method is not defined, that cus it's true, same with the localstorage methods in the ngOnInit it will send u an error in server but will work in the browser's local storage and the error thatbeing sent in the server is the same that the localstorage is no defined in the server
+- that happens cus the DOM & BOM are on the browser so they are not in the server sode that's why all the dom and bom method are undefined in the server
+- maybe u will say it's ok isn't it run in the browser so what? no now it work but later when u make your project in production it will not work cus the server will stop the build once it notice an error
+- there's alot of whays to avoid this mistakes:
+  (1) create if condition when i use any dom or bom method is it in equalls undefined or not if it's undefined then it'sa still in the server so it will not run, but when it go to the browser it will be not undefined so it will run normally  and by that we make it run in the browser and stop it in the server, and that's how u do this:
+    ngOnInit():void{
+      if(typeof localStorage != 'undefined'){
+        localStorage.setItem('name','amjad')
+      }
+      if(typeof window != 'undefined'){
+        window.alert('hello')
+      }
+    }
+  (2) in the comonent life cycle we have 8 levels :>
+    - onChange > onInit > doCheck > afterContentInitiate > afterContentCheck > afterViewInit > afterViewCheck > destroy,
+    - in angular 17 they added 2 more life cycle, thos two the code on it runs only in the browser but not in the serverside, what's the defirent between them:
+        - afterNextRender: it run only once after the afterViewInit, so we use it when we have method that we wanna run it once in the browser
+        - afterEveryNextRender: it runs more that one time it work every change ditiction happens in the browser only
+    - but we can't use them only in the injection context only like (global property or conistructor) like this :
+      conistructor(){
+        afterNextRender(()=>{
+          window.alert('hello')
+        })
+      }
+  (3) this is the one we use, angular create two methods called
+    - inPlateFormServer : it return true when the code being run in the server
+    - inPlateFormBrowser : it return true when the code being run in the browser
+    - u can use them any where in the code scope
+    - to use those two method it have to give it the plateForm id, and this id being send by an object that contain the plateform id of the plate form it's on it right now eather it's server or browser, two put this id in a place to use it in the isPlateFormServer/Browser we first need to inject the PLATEFORM_ID pbject like this
+      private readonly PLATFORM_ID = inject(PLATFORM_ID);
+    then we give the PLATEFORM_ID to the isPlateFormServer/browser as an argument and put it in an if condition in anyplace in the code scope like this:
+      ngOnInit():void{
+        if(isPlateFormBrowser(PLATEFORM_ID)){
+          window.alert('hello')
+        }
+        if(isPlateFormServer(PLATEFORM_ID)){
+          console.log('hello')
+        }
+      }
+*NOTE* if u create a method that have a window method, and this method will be run depending on an action that happens in the browser, so that means that this method only will run in the browser not in the server, so in this case we don't have to use the PLATEFORM method or any thing
+
+2- what is token ?
+- when u signup the api create somthing called token for u
+- the token is like code that have the information of the user that signed in, this information is not important like the password it's just infos like name or mail or phone number,
+- the backend developer is the one who create it
+we use the token to :>
+- once the token is being saved that means that the user logged in the website, so we make the user logged oput once the token is not saved and make it logged in once the token removed
+- some apis need tokens to send and reseve requists from it like the cart and the favorite sections, the api is take the action and to know which user use this action it take the token of the user with the action so it update the data of that user depending on that action like add a product on a cart or to favorite
+- it also send u the token when u sign up or once u log in cus there's to ays to get an acount, when u sign up u go to the home page dirictly so we send the token dirictly to the server or when the user sign up we send him to the log in page so in the log in page we need the token to be send with the log in happens
+- the token is to types, access tken and refrish token , the access token is the one we talked about the refrish token will explain it later but it contact with the backend more and it's expire time is longer
+- the access token expaire in a spicific amount of time and this happens cus it can be reached and this may cus a multibale use like u can use your account in many difernt places
+- we save the token in somthing called http coocies
+- as a front we need the token for the log in and out and the data that related to this user being connected to the user's token
+- the tokewn created by a pakcedg called jwt that the backend use it to create the token, the token has three parts
+  (1) algorithm
+  (2) payload : it hase the data of the token
+  (3) signiture: it have the signiture of the backend, it helps that if some one use the token in a wrong way the backend know that by the signiture
+- we save the token eather in the localStorage or the coockes or the seasion storage
+- but the localStorage is not secure and need to make sure that it works in the browser only
+- so we use the coockies cus it defined in the server and in the browser
+
+*REAL PROJECT TOKENS*
+- in real projects we have a access token and refresh token
+- access token :> u can use it anywhere
+- refresh token :> we use it with httpOnlyCookies and the backend handle it, if not he will create an api called verify token we send the token to it and check if it has this token or not and this what we will use now
+
+31- save the token in the cookies:>
+    - to use the cookies it have a very dificult syntax, so they made a packadge for it to make it easier to use and make it look like u write the local strage syntax
+    - this packadge called ngx cookie service go to the npm and install it
+    - then we inject the cookie service that we install, and we go to the login and inject this service cus in the login we will take the token from the response and save it
+
+32- guard:>
+- now we saved the token but we didn't make the user can't access the home page if he don't have an account,also the user can go to the login page when he is loged in already and that doesn't make any sence, so here we use the guard
+- the guard is a function that we generate in the core, it always has an if condition if it return true it send u to the page that it guard if it false it stop u
+- u generate the guard the same way u generat the c,ior s but with the g for guard
+- it has 4 types:>
+  (1) canActivate: it's a guard the has the order to make u access this routing(path) or not, and it get all the routes first and then it see if u can access it make u access if u can't access it stops u from access
+  (2) canActivateChild: it give the order to make the user access a child in the same route it's on it, like if u are at the home page and it has 3 components that being routing in the home page, this kind of guard have the order to make the user switch between those components inside the home page
+  (3) canDeactivate: it give the order to the user to go out from this routing or not so this time not access it's go out from the routing, we use it in example in online exams, if u answer most of the Q and acidently press the back btn if u return to the page again all your answers are gone, so with the deActivate guard it makes u can't go bake from a routing only by it's order in a condition
+  (4) canMatch: it's like the canActivate but we use it when we work with the lazyloading cus it do not load all the routing files and then see if we can access this routes or not like the canActivate no it only load the route files it can be accessed and the others not
+
+- in the guard file it has a function that have two parameters , the route: it has the data of the route it being using this guard like the params, and the state, it hase the path of the route u will use this guard on it, u can log them to know what inside it
+- we have to make a condition if it equals true it makes the user access the home page if not we make stay in the login page
+- to do that we will nake the if condition ask if there's a token on the cookies or not if true return true and that will sen the user to home page, if not we can use the router service to navigate it to the login page again by the router.navigate(['/login']) and return false, or we return the router service directly tothe login page with the parseURL('/login') method that in the router service nd this is better cus when u return a false on the else it may crash the server
+
+*note*:> when u try to inject the sookies and the router service u will inject them as a variable not as a propertires in the guard cus the guard is a function not a class
+
+- now we go to the routing file, on it we will create a new proprty that we will use the guard by iy that called canActivate:[authGuard] we can write it in every children path in the blank router but we can use it directly in the blank router it self and it will effect all it's childrens
+
+- now we do the same steps to stop the user from going to the login page when it's logged in already and he is in the home page
+
+33- signout:>
+- now we wanna remove the token from the cookies when we press the signout btn so we can navigate to the login page and not being stoped by the guard
+- this method we will use to remove the token will use it in defernt components so we gonna create it as a public service, so we gonna create it in the services of the auth file and from it we use it in any other components
+- so we go to the auth service and create the logout method on it, and on it we remove the token from cookies and navigate to login page
+- NOW WE wanna use this method in the auth service in the nav component in the signout btn so we go to the nav ts component and call the auth service on it and create a method that we will active it when we (click) on the signout btn , in this method we willk call the auth service and get the logput method from it and call it
+
+
+34- decode the token:
+- we will need to decode the token to take some data from it, for example the token in the freshcart api have the email and the user role and the name and those data will need it later
+- to decode the token we install a packadge called jwt-decode u can install it from npm
+- this packadge have a function that decode the token u give it to it, u go to the AUTH service cus it hase all the auth methods, on it we creat a functio that we will call in the login and register components, in this function we return decoded token by the jwt-decode function on it in give it the token for it and u have to inport it in the auth service
+- this packadge can recognize the fake token if it exist and if it's fake it return an error insted of the data of the token, so to handle the error if there's a fake token sent we use the try and catch if u rememper it it makes us try a method if it worked will it return the data if not it catch the error and u tell it what to do with it so we gonna call the jwt function in the try and equal it to a variable we create in the function and then we return this variable after the try and catch if not the cath will run and on it we will call the logout function to make the web site return to the login page, but with out it u have to do somthing to do the verify of the token and the backend give u an api for it
+
+35- pipes:
+- when u have a data that u wanna transform it to another shape of the data
+- like u can send to it a string and in the pipe u built a function that add another string before or after it, or if u send it and array and u built a function that filter the array depending on some things and this array go out of the pipe being filtered
+- it being shared for the whole application
+- it is a function called transform that take the data as a parameter and return this data in defrint shape depending on what is on the scope of it
+
+- it has two types:
+  (1)=> built in pipes:
+        - it's built in pipes like:>
+        1- UpperCasePipe:> it make the string it sent to it in UpperCasePipe
+        2- LowerCasePipe:> it make the string it sent to it in lowerCasePipe
+        3- titleCasePipe:> it make the string it sent to it have every first haracter on it in UpperCasePipe
+        4- CurrencyPipe:> it make the currncy logo for any money currncy
+        5- slicePipe:> u can slice from array or a string
+        6- jsonPipe:> somtimes when u send an object when u call it it show up like this{object}{object} this pipe make it like how it really looks like
+        7- date:> control how to show a date
+        8- AsyncPipe: we can use it with the observable insted of the subscribe
+        - to use any pipe u have to do this steps:
+          1- u have to import it in the componen file that u will use the pipes on it
+          2- u open the html of the component u import the pipe on it and in the element u wanna use the pipe on it and write  elementName | PipeName the element that it will run on when u put it after this element, some pipe takes parameters u write this parameter after a : then the parameter like this element | PipeName : param1 : param2 ....
+  (2)=> custom in pipes: it has two types also :>
+        1- pure pipes: it has a good performance cus it being run only if the data that sent to it has been changed
+          - to create u have to think what u wanna send to it and what u want it to reseve from it
+          - in the termenat u write ng g p pipeName
+          - it will create a file that on it a class that being export so u can import it any where, and the class it have an interface that contain a method called transform, before the class there's a decorator that make any class after it be a pipe
+          - in the transform method u can put a parameter of the thing u wanna send as an argument, this parameter u use it in the method inside the pipe class
+          - u have to import this pipe in the component u will use it on it first and then use the same way u used the built in pipes
+          - u have to use the
+        2- impure pipes: it has a bad berformence cus it work with the change detection that means that any changes happens in the build it reload
+
+36- cart page:
+- we have 5 cart api
+  - add product to cart :>
+    we use the post method with this api, we use it to add a product item to the user's cart, it take body that contain the product id and a header that contain the user token so we can kmow hich cart we have to add this product to it
+  - update cart product quantity:>
+    we use the put method with this api cus it's updating somthing, here we update what's the count of the product in the cart we wanna take, we send the product id and the count of in the body and the token in the header
+  - get logged user cart:>
+    we use the get method in this api, cus we get all the products that we added to the cart, we send the token in the header
+  - remove spisific cart item:>
+    we use the delete method on this api, we delete an item from the cart of the user, we send the product id in the body and the token in the header
+  - clear user cart:>
+    we use the delete method in this api, we clear the cart from all the products that we added to the cart, we sent the token with the header
+- first thing to do when u gonna connect to an api u have to read the decompntation first then test it in the postman
+- now we gonna do the add product to cart api, we gonna need a the token from the cookies and the product id from the card component,
+
+
+ngx infinit scroll

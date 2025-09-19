@@ -1,0 +1,201 @@
+<section class="pt-14 bg bg-cyan-50 dark:bg-[#2c2c31]">
+  <div class="container mx-auto py-10">
+    @if (!isLoading) {
+    <div class="flex flex-col lg:flex-row py-0 gap-10">
+      <div class="w-full lg:w-1/4">
+        <owl-carousel-o [options]="customOptions">
+          @for (img of prodDetails.images; track $index) {
+          <ng-template carouselSlide [id]="img">
+            <div class="w-full p-1">
+              <img [src]="img" class="w-full rounded" [alt]="" />
+            </div>
+          </ng-template>
+          }
+        </owl-carousel-o>
+        <!-- <a class="mx-auto">gdf</a> -->
+      </div>
+      <div class="w-full px-2 md:px-0 lg:w-[48%]">
+        <h1
+          class="text-cyan-800 dark:text-cyan-200 text-[24px] leading-[32px] font-bold"
+        >
+          {{ prodDetails.title }}
+        </h1>
+        <h2
+          class="mb-2 leading-[20px] font-[14px] text-cyan-500 dark:text-cyan-50"
+        >
+          <span class="text-cyan-800 dark:text-cyan-200 font-bold">Brand: </span
+          >{{ prodDetails.brand.name }}
+        </h2>
+        <h3
+          class="mb-2 leading-[20px] text-lg font-bold text-cyan-500 dark:text-cyan-50"
+        >
+          #{{ prodDetails.category.name }}
+        </h3>
+        <p
+          class="text-cyan-800 dark:text-cyan-200 mb-2 leading-[20px] font-[14px]"
+        >
+          {{ prodDetails.ratingsAverage }}
+          <i class="fa-solid fa-star text-[gold]"></i>
+          ({{ prodDetails.ratingsQuantity }}) ratings
+        </p>
+        <p
+          class="text-cyan-800 dark:text-cyan-200 mb-2 leading-[20px] font-[14px]"
+        >
+          <strong>Sold {{ prodDetails.sold }}</strong> times
+        </p>
+        <hr class="text-cyan-800 dark:text-cyan-300" />
+        <p class="my-2 text-[28px] text-green-500">
+          Price:
+          {{ prodDetails.price }}
+          <sub class="text-sm">EGP</sub>
+        </p>
+        <div class="flex flex-col items-center justify-center">
+          <h3
+            class="text-cyan-800 dark:text-cyan-200 leading-[20px] text-lg font-bold text-center my-3"
+          >
+            Our Benefits
+          </h3>
+          <div class="w-[70%] mb-5">
+            <owl-carousel-o [options]="benifits">
+              <ng-template carouselSlide
+                ><div class="w-[140px] h-[130px] text-center p-5">
+                  <div
+                    class="card bg-transparent w-[30px] h-[30px] m-auto flex border-transparent justify-center items-center rounded-full"
+                  >
+                    <i
+                      class="fa-solid fa-money-bill-1-wave dark:text-cyan-50 text-cyan-950"
+                    ></i>
+                  </div>
+                  <p class="text-center text-cyan-500 dark:text-cyan-50 my-2">
+                    Cash on <br />
+                    Delivery
+                  </p>
+                </div></ng-template
+              >
+              <ng-template carouselSlide
+                ><div class="w-[140px] h-[130px] text-center p-5">
+                  <div
+                    class="card bg-transparent w-[30px] h-[30px] m-auto border-transparent flex justify-center items-center rounded-full"
+                  >
+                    <i
+                      class="fa-solid fa-rotate-left dark:text-cyan-50 text-cyan-950"
+                    ></i>
+                  </div>
+                  <p class="text-center text-cyan-500 dark:text-cyan-50 my-2">
+                    15 days <br />
+                    Returnable
+                  </p>
+                </div></ng-template
+              >
+              <ng-template carouselSlide
+                ><div class="w-[140px] h-[130px] text-center p-5">
+                  <div
+                    class="card bg-transparent w-[30px] h-[30px] m-auto border-transparent flex justify-center items-center rounded-full"
+                  >
+                    <i
+                      class="fa-solid fa-user-shield dark:text-cyan-50 text-cyan-950"
+                    ></i>
+                  </div>
+                  <p class="text5center text-cyan-500 dark:text-cyan-50 my-2">
+                    25 Year<br />Manufacturer<br />Warranty
+                  </p>
+                </div></ng-template
+              >
+              <ng-template carouselSlide
+                ><div class="w-[140px] h-[130px] text-center p-5">
+                  <div
+                    class="card bg-transparent w-[30px] h-[30px] border-transparent m-auto flex justify-center items-center rounded-full"
+                  >
+                    <i
+                      class="fa-solid fa-truck dark:text-cyan-50 text-cyan-950"
+                    ></i>
+                  </div>
+                  <p class="text-center text-cyan-500 dark:text-cyan-50 my-2">
+                    Free<br />Delivery
+                  </p>
+                </div></ng-template
+              >
+              <ng-template carouselSlide
+                ><div class="w-[140px] h-[130px] text-center p-5">
+                  <div
+                    class="card bg-transparent w-[30px] h-[30px] border-transparent m-auto flex justify-center items-center rounded-full"
+                  >
+                    <i
+                      class="fa-solid fa-lock dark:text-cyan-50 text-cyan-950"
+                    ></i>
+                  </div>
+                  <p class="text-center text-cyan-500 dark:text-cyan-50 my-2">
+                    Secure<br />transaction
+                  </p>
+                </div></ng-template
+              >
+            </owl-carousel-o>
+          </div>
+        </div>
+        <hr class="text-cyan-800 dark:text-cyan-300" />
+        <h3 class="my-2 text-lg font-bold text-cyan-800 dark:text-cyan-200">
+          About This Item
+        </h3>
+        <p class="leading-[20px] text-cyan-500 dark:text-cyan-50">
+          {{ prodDetails.description }}
+        </p>
+      </div>
+      <div class="w-full md:px-0 lg:w-1/4">
+        <div class="card p-4 bg-cyan-100 dark:bg-[#28282B]">
+          <p
+            class="my-2 leading-[20px] text-[28px] text-cyan-500 dark:text-cyan-50"
+          >
+            Price:
+            <span class="my-2 text-[28px]">{{ prodDetails.price }}</span>
+
+            <sub class="text-sm">EGP</sub>
+          </p>
+          <div class="text-cyan-800 dark:text-cyan-200 my-3">
+            <i class="fa-solid fa-location-dot"></i>
+            Delivery to Egypt
+          </div>
+          <p class="text-green-500">
+            <span class="text-cyan-800 dark:text-cyan-200">{{
+              prodDetails.quantity
+            }}</span>
+            In Stock
+          </p>
+          <div class="my-3">
+            <button
+              type="button"
+              class="w-full my-3 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              Buy Now
+              <i class="fa-solid fa-money-bill-1-wave"></i>
+            </button>
+            <button
+              (click)="addProductToCart(prodDetails._id)"
+              type="button"
+              class="w-full my-3 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              Add To Cart
+              <i class="fa-solid fa-cart-plus"></i>
+            </button>
+            <button
+              type="button"
+              class="w-full my-3 text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              Add To Favorite
+              <i class="fa-solid fa-heart-circle-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }@else {
+    <div class="h-[500px] w-full flex justify-center items-center">
+      <span
+        ><img
+          class="w-[80px] h-[80px] rotateY animate-bounce"
+          src="/images/logo.png"
+          alt=""
+      /></span>
+    </div>
+    }
+  </div>
+</section>

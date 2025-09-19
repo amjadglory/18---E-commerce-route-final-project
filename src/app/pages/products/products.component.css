@@ -1,0 +1,17 @@
+.pagi ::ng-deep .ngx-pagination .current {
+  background: var(--color-cyan-200);
+  color: var(--color-cyan-700);
+  border-radius: 10px;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  margin-inline: 5px;
+}
+.pagi ::ng-deep .ngx-pagination .ng-star-inserted {
+  color: var(--color-cyan-500);
+}
+.pagi ::ng-deep .ngx-pagination .ng-star-inserted:hover {
+  background-color: var(--color-cyan-50);
+  color: var(--color-cyan-500);
+  border-radius: 10px;
+}

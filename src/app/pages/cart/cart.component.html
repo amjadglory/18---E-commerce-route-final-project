@@ -1,0 +1,166 @@
+@if (!isLoading) {
+<section
+  class="py-24 lg:py-24 md:py-36 bg-cyan-50 dark:bg-[#2c2c31] px-5 min-h-[80vh]"
+>
+  <div class="container mx-auto">
+    <div class="grid grid-cols-12 lg:space-x-28 bg-transparent items-start">
+      <!-- cart cards -->
+      <div
+        class="card lg:col-span-8 dark:text-cyan-50 col-span-12 bg-transparent mb-5 lg:mb-0 space-y-3 p-4"
+      >
+        <h2 class="text-[30px] leading-[23px]">Your Cart</h2>
+        <h3 class="text-[18px] leading-[28px]">
+          {{ cartDetails.products.length }} Product
+        </h3>
+        <!-- card -->
+        @if (cartDetails.products.length === 0) {
+
+        <div class="card text-center p-5 space-y-3.5 dark:text-cyan-50">
+          <h2 class="text-[30px] leading-[23px]">
+            There Are No Products In your Cart
+          </h2>
+          <p>You Can Have A Look At Our Products</p>
+          <div class="my-10 flex justify-center items-center">
+            <a
+              routerLink="/products"
+              type="button"
+              class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full md:w-[50%] lg:w-[30%]"
+            >
+              See All Products
+            </a>
+          </div>
+        </div>
+        }@else { @for (product of cartDetails.products; track product._id) {
+        <div class="card grid grid-cols-3">
+          <!-- card img -->
+          <div class="md:col-span-1 col-span-3 rounded-start">
+            <img
+              class="rounded-start"
+              [src]="product.product.imageCover"
+              [alt]="product.product.title"
+            />
+          </div>
+          <div
+            class="md:col-span-2 col-span-3 space-y-2 p-4 text-cyan-900 dark:text-cyan-50"
+          >
+            <div class="space-y-2">
+              <h2 class="text-[30px] leading-[23px]">
+                {{ product.product.title }}
+              </h2>
+              <h3 class="text-[18px] leading-[28px]">
+                {{ product.product.category.name }}
+              </h3>
+              <h3 class="text-[18px] leading-[28px]">
+                {{ product.product.brand.name }}
+              </h3>
+            </div>
+            <div>
+              <h3 class="text-[18px] leading-[28px]">
+                Cost: {{ product.price }} EGP
+              </h3>
+            </div>
+            <div class="flex gap-3 justify-start items-center">
+              <div class="card px-4 py-1 space-x-5 rounded-full">
+                <button
+                  (click)="
+                    updateUserCartProdCount(
+                      product.product._id,
+                      product.count - 1
+                    )
+                  "
+                  class="cursor-pointer hover:text-red-700 transition-all"
+                >
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <span>{{ product.count }}</span>
+                <button
+                  (click)="
+                    updateUserCartProdCount(
+                      product.product._id,
+                      product.count + 1
+                    )
+                  "
+                  class="cursor-pointer hover:text-green-500 transition-a"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <button
+                (click)="deleteUserCartProduct(product.product._id)"
+                class="cursor-pointer hover:text-red-700 transition-all"
+              >
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+            <div class="space-y-3">
+              <h3 class="text-[18px] leading-[28px]">Total Price:</h3>
+              <div class="text-[18px] leading-[28px]">
+                {{ product.price * product.count }} EGP
+              </div>
+            </div>
+          </div>
+        </div>
+        } }
+
+        <hr class="text-cyan-500 mt-5" />
+      </div>
+      <!-- payment -->
+      <div
+        class="card lg:col-span-4 col-span-12 bg-transparent p-5 space-y-4 dark:text-cyan-50"
+      >
+        <div class="flex justify-between">
+          <h4 class="text-[18px] leading-[28px]">
+            Sub total({{ cartDetails.products.length }} Items)
+          </h4>
+          <p class="text-[16px] leading-[28px]">
+            {{ cartDetails.totalCartPrice }}
+          </p>
+        </div>
+        <div class="flex justify-between">
+          <h4 class="text-[18px] leading-[28px]">Delivery Cost</h4>
+          <p class="text-[16px] leading-[28px]">Calculated at checkout</p>
+        </div>
+        <hr class="text-cyan-500 mt-5" />
+        <div class="flex justify-between">
+          <h3 class="text-[18px] leading-[28px]">Total Price:</h3>
+          <p class="text-[16px] leading-[28px]">
+            {{ cartDetails.totalCartPrice }}
+          </p>
+        </div>
+        <button
+          [routerLink]="['/checkout', cartDetails._id]"
+          type="button"
+          class="mainBtn w-full py-4"
+        >
+          Check Out
+        </button>
+        <p class="font-bold">
+          <i class="fa-solid fa-money-check-dollar"></i> Accepted payment
+          methods
+        </p>
+        <div class="flex gap-3 items-center justify-center">
+          <img class="w-[50px]" src="/images/amazon-pay.png" alt="" />
+          <img
+            class="w-[50px]"
+            src="/images/American-Express-Color.png"
+            alt=""
+          />
+          <img class="w-[50px]" src="/images/mastercard.webp" alt="" />
+          <img class="w-[50px]" src="/images/paypal.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}@else {
+<div
+  class="py-24 lg:py-24 md:py-36 bg-cyan-50 dark:bg-[#2c2c31] px-5 min-h-[80vh] flex justify-center items-center"
+>
+  <span
+    ><img
+      class="w-[80px] h-[80px] rotateY animate-bounce"
+      src="/images/logo.png"
+      alt=""
+  /></span>
+</div>
+}

@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+body {
+  font-family: "Inter", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Libertinus Sans", sans-serif;
+}
+
+@layer components {
+  .card {
+    @apply bg-cyan-200 dark:bg-[#28282B] border border-cyan-50 dark:border-cyan-700 rounded shadow-sm shadow-cyan-400 dark:shadow-cyan-200 relative;
+  }
+  .input {
+    @apply rounded-none rounded-e-lg bg-white border border-cyan-300 text-cyan-900 focus:ring-cyan-500 focus:border-cyan-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-cyan-700 dark:border-cyan-600 dark:placeholder-cyan-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500;
+  }
+  .inputIcon {
+    @apply inline-flex items-center px-3 text-sm text-cyan-900 bg-white border border-e-0 border-cyan-300 rounded-s-md dark:bg-cyan-600 dark:text-cyan-400 dark:border-cyan-600;
+  }
+  .mainBtn {
+    @apply text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-500 font-medium rounded-lg text-sm px-5 py-2.5 mb-5 lg:mb-0 text-center w-[200px];
+  }
+}
+
+.owl-theme .owl-dots .owl-dot.active span {
+  background-color: rgb(0, 126, 126);
+}
+.owl-theme .owl-dots .owl-dot.active span:hover {
+  background-color: rgb(112, 228, 228);
+}
+
+.layer {
+  background-color: rgba(0, 32, 32, 0.342);
+}
+
+.lightGrad {
+  background: linear-gradient(
+    225deg,
+    rgba(0, 0, 0, 1) 30%,
+    var(--color-cyan-400) 0%
+  );
+}
+.darkGrad {
+  background: linear-gradient(
+    225deg,
+    var(--color-cyan-400) 30%,
+    rgba(0, 0, 0, 1) 0%
+  );
+}
+.lightGrad:hover {
+  background: linear-gradient(black 30%);
+}
+
+/* loading animation */
+@keyframes rotateY {
+  0% {
+    transform: rotateY(0deg) translateY(-25%);
+
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  100% {
+    transform: rotateY(360deg) translateY(-25%);
+
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.rotateY {
+  animation: rotateY 1s linear infinite;
+}

@@ -1,0 +1,74 @@
+<section class="bg-cyan-50 dark:bg-[#2c2c31] py-36">
+  <div
+    class="border-2 border-cyan-200 rounded-lg p-4 shadow-sm md:w-1/2 mx-5 md:mx-auto shadow-cyan-600 dark:shadow-cyan-400 bg-transparent flex flex-col justify-center"
+  >
+    <div class="flex flex-col">
+      <div class="self-start mb-5">
+        <h4
+          class="text-center font-bold text-xl dark:text-cyan-400 text-cyan-600"
+        >
+          Welcome!
+        </h4>
+        <h1
+          class="text-center ms-5 font-bold text-3xl dark:text-cyan-400 text-cyan-600"
+        >
+          Login Now
+        </h1>
+      </div>
+
+      <form
+        class="w-full md:w-3/4 mx-auto"
+        [formGroup]="loginForm"
+        (ngSubmit)="submit()"
+      >
+        <!-- email -->
+        <app-input
+          [inputControl]="loginForm.get('email')"
+          [inputIcon]="'fa-solid fa-envelope'"
+          [inputId]="'mail'"
+          [inputLabel]="'Email'"
+          [inputPlaceHolder]="'amjad@gmail.com'"
+          [inputType]="'mail'"
+        />
+
+        <!-- password -->
+        <app-input
+          [inputControl]="loginForm.get('password')"
+          [inputIcon]="'fa-solid fa-envelope'"
+          [inputId]="'password'"
+          [inputLabel]="'Password'"
+          [inputPlaceHolder]="''"
+          >please write the right pattern
+        </app-input>
+
+        <div class="flex justify-center">
+          <button
+            (click)="submit()"
+            type="submit"
+            class="mainBtn mt-5 mx-auto flex items-center justify-center"
+          >
+            @if (isLoading) {
+            <span
+              ><img
+                class="w-[20px] h-[20px] rotateY animate-bounce"
+                src="/images/logo.png"
+                alt=""
+            /></span>
+            }@else if (!isLoading) {
+            <span>login</span>
+            }
+          </button>
+        </div>
+        @if(errMsg){
+        <p class="p-0.5 text-center rounded bg-red-300 text-red-900 mt-1">
+          {{ errMsg }}
+        </p>
+        }@else if (sucMsg) {
+        <p class="p-0.5 text-center rounded bg-green-300 text-green-900 mt-1">
+          {{ sucMsg }}
+        </p>
+        }
+      </form>
+    </div>
+  </div>
+</section>

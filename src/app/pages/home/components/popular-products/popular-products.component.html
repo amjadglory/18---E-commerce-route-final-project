@@ -1,0 +1,31 @@
+<section class="container m-auto">
+  <h2 class="text-5xl dark:text-cyan-50 text-cyan-800">Popular Products</h2>
+  <!-- product grid -->
+  @if (!isLoading) {
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10"
+  >
+    @for (product of productList.slice(0,12); track product._id) {
+    <app-card [product]="product" ngSkipHydration></app-card>
+    }
+  </div>
+  }@else {
+  <div class="h-[300px] flex justify-center items-center">
+    <span
+      ><img
+        class="w-[80px] h-[80px] rotateY animate-bounce"
+        src="/images/logo.png"
+        alt=""
+    /></span>
+  </div>
+  }
+  <div class="my-10 flex justify-center items-center">
+    <a
+      routerLink="/products"
+      type="button"
+      class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full md:w-[25%] lg:w-[15%]"
+    >
+      See All Products
+    </a>
+  </div>
+</section>

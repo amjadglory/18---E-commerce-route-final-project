@@ -1,0 +1,172 @@
+<div class="card relative">
+  <!-- details layer -->
+  <div
+    (click)="hideDetailsX(detailsRef)"
+    #detailsRef
+    class="fixed top-0 left-0 right-0 bottom-0 layer justify-center items-center z-[51] hidden"
+  >
+    <a
+      (click)="stopPop($event)"
+      class="flex flex-col items-center border shadow-sm md:flex-row md:max-w-2xl card relative"
+    >
+      <button
+        (click)="hideDetailsX(detailsRef)"
+        class="absolute top-2.5 right-2.5 text-[24px]"
+      >
+        <i class="fa-solid fa-square-xmark text-cyan-800 dark:text-cyan-50"></i>
+      </button>
+      <img
+        class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-sm"
+        [src]="product.imageCover"
+        alt=""
+      />
+      <div
+        class="flex flex-col justify-between p-4 leading-normal overflow-hidden"
+      >
+        <h5
+          class="mb-2 text-2xl font-bold tracking-tight text-cyan-800 dark:text-cyan-50"
+        >
+          {{ product.title }}
+        </h5>
+        <p class="mb-3 font-normal text-cyan-800 dark:text-cyan-50">
+          {{ product.description }}
+        </p>
+        <a
+          [routerLink]="['/details', product.slug, product._id]"
+          class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm w px-5 py-2.5 text-center me-2 mb-2"
+        >
+          More Details
+        </a>
+      </div>
+    </a>
+  </div>
+
+  <!-- card img -->
+  <div class="w-full rounded-t relative z-20 overflow-hidden group/cardImg">
+    <!-- btns -->
+    <div
+      class="absolute top-0 bottom-0 left-0 right-0 hidden group-hover/cardImg:flex duration-[2s] transition-all justify-center items-center"
+    >
+      <button
+        (click)="addProductToCart(product._id)"
+        (click)="showToaster(cartToasterRef)"
+        type="button"
+        class="text-white h-[35px] z-40 w-[35px] bg-green-300 rounded-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium text-sm relative"
+      >
+        <div
+          class="opacity-0 absolute border rounded-full border-green-400 bg-green-100 text-green-400 text-12px"
+          #cartToasterRef
+        >
+          <app-toaster>+1</app-toaster>
+        </div>
+        <i class="fa-solid fa-cart-plus"></i>
+      </button>
+
+      <button
+        (click)="showDetails(detailsRef)"
+        type="button"
+        class="mx-[10px] bg-cyan-700 z-40 hover:bg-cyan-800 py-2.5 px-5 text-center inline-flex items-center dark:bg-cyan-600 dark:hover:bg-cyan-70 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-sm"
+      >
+        Quick Review
+      </button>
+
+      @if (currentUserFav.includes(product._id)) {
+      <button
+        (click)="addProductToFav(product._id, favBtnRef, removeFavBtnRef)"
+        #favBtnRef
+        type="button"
+        class="hidden text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+      >
+        @if (isLoading) {
+        <span class="flex justify-center mt-1"
+          ><img
+            class="w-[15px] h-[13px] rotateY animate-bounce"
+            src="/images/logo2.png"
+            alt=""
+        /></span>
+        }@else if (!isLoading) {
+        <i class="fa-regular fa-heart"></i>
+        }
+      </button>
+      <button
+        (click)="removeProdFromFav(product._id, favBtnRef, removeFavBtnRef)"
+        #removeFavBtnRef
+        type="button"
+        class="text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+      >
+        @if (isLoading) {
+        <span class="flex justify-center mt-1"
+          ><img
+            class="w-[15px] h-[13px] rotateY animate-bounce"
+            src="/images/logo2.png"
+            alt=""
+        /></span>
+        }@else if (!isLoading) {
+        <i class="fa-solid fa-heart"></i>
+        }
+      </button>
+      }@else {
+      <button
+        (click)="addProductToFav(product._id, favBtnRef, removeFavBtnRef)"
+        #favBtnRef
+        type="button"
+        class="text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+      >
+        @if (isLoading) {
+        <span class="flex justify-center mt-1"
+          ><img
+            class="w-[15px] h-[13px] rotateY animate-bounce"
+            src="/images/logo2.png"
+            alt=""
+        /></span>
+        }@else if (!isLoading) {
+        <i class="fa-regular fa-heart"></i>
+        }
+      </button>
+      <button
+        (click)="removeProdFromFav(product._id, favBtnRef, removeFavBtnRef)"
+        #removeFavBtnRef
+        type="button"
+        class="hidden text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+      >
+        @if (isLoading) {
+        <span class="flex justify-center mt-1"
+          ><img
+            class="w-[15px] h-[13px] rotateY animate-bounce"
+            src="/images/logo2.png"
+            alt=""
+        /></span>
+        }@else if (!isLoading) {
+        <i class="fa-solid fa-heart"></i>
+        }
+      </button>
+      }
+    </div>
+
+    <img
+      (click)="showDetails(detailsRef)"
+      class="w-full rounded-t group-hover/cardImg:blur-[2px] duration-[1s] transition-all"
+      [src]="product.imageCover"
+      [alt]="product.title"
+    />
+  </div>
+
+  <!-- card body -->
+  <div class="p-3">
+    <h3 class="text-cyan-500 dark:text-cyan-200 text-xl">
+      {{ product.category.name }}
+    </h3>
+    <h4
+      class="text-cyan-800 dark:text-cyan-50 text-2xl pt-2 pb-1.5 line-clamp-1"
+    >
+      {{ product.title }}
+    </h4>
+    <div class="flex justify-between items-center dark:text-cyan-50">
+      <span>{{ product.price }} EGP</span>
+      <span class="dark:text-cyan-50"
+        ><i class="fa-solid fa-star text-[gold]"></i>
+        {{ product.ratingsAverage }}</span
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,290 @@
+<section class="py-24 bg-cyan-50 dark:bg-[#28282B]">
+  <div class="container m-auto">
+    <h2 class="text-5xl dark:text-cyan-50 text-cyan-800">Our Products</h2>
+
+    <!-- search input -->
+
+    <input
+      [(ngModel)]="searchInput"
+      type="search"
+      id="input-group-1"
+      class="bg-transparent border-3 dark:border-cyan-300 dark:text-cyan-50 text-sm rounded-lg dark:focus:ring-cyan-500 dark:focus:border-cyan-300 dark:placeholder-cyan-50 block w-full lg:w-3/4 mx-auto my-7 ps-5 p-2.5 dark:bg-gray-700 border-cyan-600 placeholder-gray-400 text-cyan-800 focus:ring-cyan-500 focus:border-blue-500"
+      placeholder="Search by name"
+    />
+
+    <div class="flex flex-col justify-center items-center gap-3">
+      <h3 class="dark:text-cyan-50 text-cyan-800">
+        Filters <i class="fa-solid fa-filter"></i>
+      </h3>
+
+      <div class="inline-flex rounded-md shadow-xs" role="group">
+        <button
+          (click)="getAllProductsData()"
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-200 rounded-s-lg hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:bg-cyan-100 focus:text-cyan-700 dark:border-cyan-900 dark:text-cyan-50 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-cyan-500 dark:focus:text-white"
+        >
+          All Categories
+        </button>
+
+        <!--? men -->
+        <button
+          id="dropdownHoverButton"
+          data-dropdown-toggle="MenDropdown"
+          data-dropdown-trigger="hover"
+          class="text-center inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-200 hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:bg-cyan-100 focus:text-cyan-700 dark:border-cyan-900 dark:text-cyan-50 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-cyan-500 dark:focus:text-white"
+          type="button"
+        >
+          Men
+          <svg
+            class="w-2.5 h-2.5 ms-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="MenDropdown"
+          class="z-40 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownHoverButton"
+          >
+            <li>
+              <button
+                (click)="categoryProp = '6439d5b90049ad0b52b90048'"
+                (click)="getProductsByCategory()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                All
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089c3924b25627a2531593'"
+                (click)="categoryProp = '6439d5b90049ad0b52b90048'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Adidas / Nike
+              </button>
+            </li>
+
+            <li>
+              <button
+                (click)="brandProp = '64089dc924b25627a25315a8'"
+                (click)="categoryProp = '6439d5b90049ad0b52b90048'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Jack & Jones
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089d9e24b25627a25315a5'"
+                (click)="categoryProp = '6439d5b90049ad0b52b90048'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                LC Waikiki
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089d5c24b25627a253159f'"
+                (click)="categoryProp = '6439d5b90049ad0b52b90048'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Puma
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!--? women -->
+        <button
+          id="dropdownHoverButton"
+          data-dropdown-toggle="WomenDropdown"
+          data-dropdown-trigger="hover"
+          class="text-center inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-200 hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:bg-cyan-100 focus:text-cyan-700 dark:border-cyan-900 dark:text-cyan-50 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-cyan-500 dark:focus:text-white"
+          type="button"
+        >
+          Women
+          <svg
+            class="w-2.5 h-2.5 ms-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="WomenDropdown"
+          class="z-40 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownHoverButton"
+          >
+            <li>
+              <button
+                (click)="categoryProp = '6439d58a0049ad0b52b9003f'"
+                (click)="getProductsByCategory()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                All
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089bbe24b25627a253158b'"
+                (click)="categoryProp = '6439d2d167d9aa4ca970649f'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                DeFacto
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!--? elect -->
+        <button
+          id="dropdownHoverButton"
+          data-dropdown-toggle="dropdownHover"
+          data-dropdown-trigger="hover"
+          class="text-center inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-200 rounded-e-lg hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:bg-cyan-100 focus:text-cyan-700 dark:border-cyan-900 dark:text-cyan-50 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-cyan-500 dark:focus:text-white"
+          type="button"
+        >
+          Electronics
+          <svg
+            class="w-2.5 h-2.5 ms-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownHover"
+          class="z-40 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownHoverButton"
+          >
+            <li>
+              <button
+                (click)="categoryProp = '6439d2d167d9aa4ca970649f'"
+                (click)="getProductsByCategory()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                All
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089fe824b25627a25315d1'"
+                (click)="categoryProp = '6439d2d167d9aa4ca970649f'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Canon
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089faf24b25627a25315cd'"
+                (click)="categoryProp = '6439d2d167d9aa4ca970649f'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Dell
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089df124b25627a25315ab'"
+                (click)="categoryProp = '6439d2d167d9aa4ca970649f'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Samsung
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="brandProp = '64089f5824b25627a25315c7'"
+                (click)="categoryProp = '6439d2d167d9aa4ca970649f'"
+                (click)="getProductsByCategory_Brand()"
+                class="m-0 w-full text-center py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Sony
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- product grid -->
+    @if (!isLoading) {
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10"
+    >
+      @for (product of productList | paginate: { id: 'foo', itemsPerPage:
+      pageSize, currentPage: p, totalItems: total } |search : searchInput ;
+      track product._id) {
+      <app-card [product]="product"></app-card>
+      }
+    </div>
+    }@else {
+    <div class="h-[500px] w-full flex justify-center items-center">
+      <span
+        ><img
+          class="w-[80px] h-[80px] rotateY animate-bounce"
+          src="/images/logo.png"
+          alt=""
+      /></span>
+    </div>
+    }
+    <div class="flex justify-center items-center my-5">
+      <pagination-controls
+        class="pagi"
+        id="foo"
+        (pageChange)="getAllProductsData($event)"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+</section>

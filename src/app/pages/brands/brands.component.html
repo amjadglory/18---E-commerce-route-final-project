@@ -1,0 +1,36 @@
+<section class="py-14">
+  <div class="container relative mx-auto">
+    <h2 class="text-4xl mb-4 text-cyan-800 dark:text-cyan-200">
+      Shop Popular Brands
+    </h2>
+    @if (!isLoading) {
+    <owl-carousel-o [options]="customOptions">
+      @for (brand of brandsList; track brand._id) {
+      <ng-template carouselSlide [id]="brand._id">
+        <div class="m-6 card">
+          <img
+            [src]="brand.image"
+            class="w-full h-[250px] rounded-t"
+            [alt]="brand.name"
+          />
+          <h3
+            class="bg-cyan-200 dark:bg-transparent text-center rounded-b dark:text-cyan-200 text-cyan-800"
+          >
+            {{ brand.name }}
+          </h3>
+        </div>
+      </ng-template>
+      }
+    </owl-carousel-o>
+    }@else {
+    <div class="h-[300px] flex justify-center items-center">
+      <span
+        ><img
+          class="w-[80px] h-[80px] rotateY animate-bounce"
+          src="/images/logo.png"
+          alt=""
+      /></span>
+    </div>
+    }
+  </div>
+</section>

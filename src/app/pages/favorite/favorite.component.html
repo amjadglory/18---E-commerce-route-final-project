@@ -1,0 +1,26 @@
+<section
+  class="container m-auto py-24 lg:py-24 md:py-36 bg-cyan-50 dark:bg-[#2c2c31] px-5 min-h-[80vh]"
+>
+  <h2 class="text-5xl dark:text-cyan-50 text-cyan-800">
+    My Fav<i class="fa-solid fa-heart text-3xl text-red-500"></i>rite
+  </h2>
+  <!-- product grid -->
+  @if (!isLoading) {
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10"
+  >
+    @for (product of productList; track product._id) {
+    <app-card [product]="product" ngSkipHydration></app-card>
+    }
+  </div>
+  }@else {
+  <div class="h-[300px] flex justify-center items-center">
+    <span
+      ><img
+        class="w-[80px] h-[80px] rotateY animate-bounce"
+        src="/images/logo.png"
+        alt=""
+    /></span>
+  </div>
+  }
+</section>
