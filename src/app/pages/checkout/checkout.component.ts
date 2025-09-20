@@ -22,6 +22,7 @@ export class CheckoutComponent implements OnInit {
   private readonly cartService = inject(CartService);
   checkoutForm!: FormGroup;
   cartId!: string | null;
+  payMethod!: string;
   ngOnInit(): void {
     this.initForm();
     this.getCartId();
@@ -50,6 +51,25 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  cashCheckout(): void {
+    if (this.checkoutForm.valid) {
+      console.log(this.checkoutForm.value);
+      console.log(this.cartId);
+      this.cartService
+        .checkoutCashSeasion(this.cartId, this.checkoutForm.value)
+        .subscribe({
+          next: (res) => {
+            if (res.status === 'success') {
+              window.open('http://localhost:4200/#/allorders', '_self');
+              console.log(res);
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+    }
+  }
   checkout(): void {
     if (this.checkoutForm.valid) {
       console.log(this.checkoutForm.value);

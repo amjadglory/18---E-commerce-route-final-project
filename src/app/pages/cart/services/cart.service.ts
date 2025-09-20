@@ -45,6 +45,16 @@ export class CartService {
       this.myHeaders
     );
   }
+  checkoutCashSeasion(
+    cartId: string | null,
+    addressData: object
+  ): Observable<any> {
+    return this.httpClient.post(
+      environment.baseUrl + `orders/${cartId}`,
+      addressData,
+      this.myHeaders
+    );
+  }
   checkoutSeasion(cartId: string | null, addressData: object): Observable<any> {
     return this.httpClient.post(
       environment.baseUrl +

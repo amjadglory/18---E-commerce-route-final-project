@@ -26,6 +26,7 @@ export class AllordersComponent {
       next: (res) => {
         this.isLoading = false;
         this.ordersList = res.reverse();
+        console.log(res);
       },
       error: (err) => {
         this.isLoading = false;
