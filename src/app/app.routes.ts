@@ -59,14 +59,14 @@ export const routes: Routes = [
         title: 'Categories Page',
       },
       {
-        path: 'details/:prodSlug/:prodId',
-        component: DetailsComponent,
-        title: 'Details Page',
-      },
-      {
         path: 'checkout/:id',
         component: CheckoutComponent,
         title: 'Checkout Page',
+      },
+      {
+        path: 'details/:prodSlug/:prodId',
+        component: DetailsComponent,
+        title: 'Details Page',
       },
       {
         path: 'allorders',
