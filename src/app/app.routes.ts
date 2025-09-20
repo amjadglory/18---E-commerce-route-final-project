@@ -62,9 +62,6 @@ export const routes: Routes = [
         path: 'details/:prodSlug/:prodId',
         component: DetailsComponent,
         title: 'Details Page',
-        data: {
-          renderMode: 'client',
-        },
       },
       {
         path: 'checkout/:id',
