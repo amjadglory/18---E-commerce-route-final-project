@@ -2789,6 +2789,9 @@
       color: var(--color-gray-400);
     }
   }
+  .text-\[5px\] {
+    font-size: 5px;
+  }
   .text-\[10px\] {
     font-size: 10px;
   }
