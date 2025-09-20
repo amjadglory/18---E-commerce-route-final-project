@@ -32,7 +32,7 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
-  }),
+  })
 );
 
 /**
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
   angularApp
     .handle(req)
     .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
+      response ? writeResponseToNodeResponse(response, res) : next()
     )
     .catch(next);
 });
@@ -66,3 +66,19 @@ if (isMainModule(import.meta.url)) {
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
  */
 export const reqHandler = createNodeRequestHandler(app);
+
+export function getPrerenderParams() {
+  return [
+    { prodSlug: 'sample-slug', prodId: '1' },
+    { prodSlug: 'another-slug', prodId: '2' },
+  ];
+}
+
+export const config = {
+  routes: {
+    'details/:prodSlug/:prodId': {
+      renderMode: 'prerender',
+      getPrerenderParams,
+    },
+  },
+};
