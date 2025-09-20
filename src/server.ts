@@ -69,8 +69,11 @@ export const reqHandler = createNodeRequestHandler(app);
 
 export function getPrerenderParams() {
   return [
-    { prodSlug: 'sample-slug', prodId: '1' },
-    { prodSlug: 'another-slug', prodId: '2' },
+    {
+      prodSlug: 'softride-enzo-nxt-castlerock-high-risk-r',
+      prodId: '6428de2adc1175abc65ca05b',
+    },
+    { prodSlug: 'woman-shawl', prodId: '6428ebc6dc1175abc65ca0b9' },
   ];
 }
 
