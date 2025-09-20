@@ -1,0 +1,5 @@
+.toastAnime {
+  animation-name: toasterAnime;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}

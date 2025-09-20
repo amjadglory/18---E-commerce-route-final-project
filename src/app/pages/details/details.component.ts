@@ -4,10 +4,12 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OwlOptions, CarouselModule } from 'ngx-owl-carousel-o';
 import { CartService } from '../cart/services/cart.service';
+import { ToasterComponent } from '../../shared/components/toaster/toaster.component';
+import { FavoriteService } from '../../shared/components/favorite.service';
 
 @Component({
   selector: 'app-details',
-  imports: [CarouselModule],
+  imports: [CarouselModule, ToasterComponent],
 
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
@@ -16,6 +18,7 @@ export class DetailsComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly productDetailsService = inject(ProductDetailsService);
   private readonly cartService = inject(CartService);
+  private readonly favoriteService = inject(FavoriteService);
 
   prodId: string | null = null;
   prodDetails: Product = {} as Product;
@@ -74,11 +77,6 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.getProdId();
-    this.getProdDetailsData();
-  }
-
   getProdId(): void {
     this.isLoading = true;
 
@@ -101,5 +99,17 @@ export class DetailsComponent implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  showToaster(toasterRef: HTMLDivElement) {
+    toasterRef.classList.add('toastAnime');
+    setTimeout(() => {
+      toasterRef.classList.remove('toastAnime');
+    }, 500);
+  }
+
+  ngOnInit(): void {
+    this.getProdId();
+    this.getProdDetailsData();
   }
 }
