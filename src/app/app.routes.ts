@@ -46,7 +46,7 @@ export const routes: Routes = [
     component: BlankLayoutComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'home', component: HomeComponent, title: 'Home Page' },
+      { path: 'home', component: HomeComponent, title: 'BoycottMarket' },
       { path: 'cart', component: CartComponent, title: 'Cart Page' },
       {
         path: 'favorite',
