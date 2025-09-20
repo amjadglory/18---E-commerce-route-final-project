@@ -7,17 +7,12 @@
     <owl-carousel-o [options]="customOptions">
       @for (brand of brandsList; track brand._id) {
       <ng-template carouselSlide [id]="brand._id">
-        <div class="m-6 card">
+        <div class="mx-auto lg:m-6 card rounded-full w-[250px] h-[250px]">
           <img
             [src]="brand.image"
-            class="w-full h-[250px] rounded-t"
+            class="w-[250px] h-[250px] rounded-full"
             [alt]="brand.name"
           />
-          <h3
-            class="bg-cyan-200 dark:bg-transparent text-center rounded-b dark:text-cyan-200 text-cyan-800"
-          >
-            {{ brand.name }}
-          </h3>
         </div>
       </ng-template>
       }
