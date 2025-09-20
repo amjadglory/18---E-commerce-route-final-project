@@ -66,22 +66,3 @@ if (isMainModule(import.meta.url)) {
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
  */
 export const reqHandler = createNodeRequestHandler(app);
-
-export function getPrerenderParams() {
-  return [
-    {
-      prodSlug: 'softride-enzo-nxt-castlerock-high-risk-r',
-      prodId: '6428de2adc1175abc65ca05b',
-    },
-    { prodSlug: 'woman-shawl', prodId: '6428ebc6dc1175abc65ca0b9' },
-  ];
-}
-
-export const config = {
-  routes: {
-    'details/:prodSlug/:prodId': {
-      renderMode: 'prerender',
-      getPrerenderParams,
-    },
-  },
-};
