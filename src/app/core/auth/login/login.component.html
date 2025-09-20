@@ -1,4 +1,4 @@
-<section class="bg-cyan-50 dark:bg-[#2c2c31] py-36">
+<section class="bg-cyan-50 dark:bg-[#2c2c31] py-40">
   <div
     class="border-2 border-cyan-200 rounded-lg p-4 shadow-sm md:w-1/2 mx-5 md:mx-auto shadow-cyan-600 dark:shadow-cyan-400 bg-transparent flex flex-col justify-center"
   >
@@ -41,7 +41,7 @@
           >please write the right pattern
         </app-input>
 
-        <div class="flex justify-center">
+        <div class="flex justify-center flex-col items-center">
           <button
             (click)="submit()"
             type="submit"
@@ -58,6 +58,11 @@
             <span>login</span>
             }
           </button>
+          <a
+            routerLink="/forget"
+            class="dark:text-cyan-400 text-cyan-600 text-[12px] hover:text-cyan-500 mt-1 cursor-pointer"
+            >Forget Password?</a
+          >
         </div>
         @if(errMsg){
         <p class="p-0.5 text-center rounded bg-red-300 text-red-900 mt-1">

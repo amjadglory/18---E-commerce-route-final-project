@@ -41,4 +41,23 @@ export class AuthService {
     }
     return;
   }
+
+  verifyEmail(email: object): Observable<any> {
+    return this.httpClient.post(
+      environment.baseUrl + 'auth/forgotPasswords',
+      email
+    );
+  }
+  verifyCode(code: object): Observable<any> {
+    return this.httpClient.post(
+      environment.baseUrl + 'auth/verifyResetCode',
+      code
+    );
+  }
+  resetPass(pass: object): Observable<any> {
+    return this.httpClient.put(
+      environment.baseUrl + 'auth/resetPassword',
+      pass
+    );
+  }
 }

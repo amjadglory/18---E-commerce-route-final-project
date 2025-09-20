@@ -1,3 +1,4 @@
+import { ForgetPassComponent } from './core/auth/forget-pass/forget-pass.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout.component';
@@ -31,6 +32,11 @@ export const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
         title: 'Register Page',
+      },
+      {
+        path: 'forget',
+        component: ForgetPassComponent,
+        title: 'Forget Password',
       },
     ],
   },

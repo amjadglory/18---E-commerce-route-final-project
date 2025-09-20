@@ -6,10 +6,11 @@ import { DecodeToken } from '../../core/auth/interrface/decode-token.interface';
 import { environment } from '../../../environments/environment.development';
 import { CartService } from '../cart/services/cart.service';
 import { Order } from './interface/order.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-allorders',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './allorders.component.html',
   styleUrl: './allorders.component.css',
 })

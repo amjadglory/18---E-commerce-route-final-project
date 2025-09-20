@@ -2,10 +2,11 @@ import { Product } from './../../core/models/product.interface';
 import { Component, inject } from '@angular/core';
 import { FavoriteService } from '../../shared/components/favorite.service';
 import { CardComponent } from '../../shared/components/card/card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorite',
-  imports: [CardComponent],
+  imports: [CardComponent, RouterLink],
   templateUrl: './favorite.component.html',
   styleUrl: './favorite.component.css',
 })
