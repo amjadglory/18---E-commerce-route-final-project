@@ -63,7 +63,7 @@ export const routes: Routes = [
         component: DetailsComponent,
         title: 'Details Page',
         data: {
-          renderMode: 'ssr',
+          renderMode: 'client',
         },
       },
       {
