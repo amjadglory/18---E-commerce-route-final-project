@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './favorite.component.css',
 })
 export class FavoriteComponent {
-  private readonly favoriteService = inject(FavoriteService);
+  public readonly favoriteService = inject(FavoriteService);
   productList: Product[] = [];
   currentUserFav: Array<string> = [];
   isLoading: boolean = false;
@@ -22,7 +22,7 @@ export class FavoriteComponent {
       next: (res) => {
         console.log(res);
         this.isLoading = false;
-        this.productList = res.data;
+        this.favoriteService.favProds = res.data;
         for (let i = 0; i < res.data.length; i++) {
           this.currentUserFav.push(res.data[i].id);
         }

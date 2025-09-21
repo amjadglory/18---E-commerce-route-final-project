@@ -44,7 +44,7 @@ export class CardComponent implements OnInit {
       next: (res) => {
         favBtnRef.classList.add('hidden');
         removeFavBtnRef.classList.remove('hidden');
-        console.log(res.data);
+        console.log(res);
         this.isLoading = false;
       },
       error: (err) => {
@@ -89,7 +89,7 @@ export class CardComponent implements OnInit {
         for (let i = 0; i < res.data.length; i++) {
           this.currentUserFav.push(res.data[i].id);
         }
-
+        this.favoriteService.favProds = res.data;
         console.log(this.currentUserFav);
         this.cookieService.set('curntFavProds', this.currentUserFav.toString());
       },

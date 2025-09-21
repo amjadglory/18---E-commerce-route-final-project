@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { Product } from '../../core/models/product.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class FavoriteService {
       token: this.cookieService.get('token'),
     },
   };
+  favProds: Array<Product> = [];
   AddFavProd(prodId: string): Observable<any> {
     return this.httpClient.post(
       environment.baseUrl + 'wishlist',

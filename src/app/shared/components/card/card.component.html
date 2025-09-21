@@ -167,6 +167,7 @@
       @if (currentUserFav.includes(product._id)) {
       <button
         (click)="addProductToFav(product._id, favBtnRef, removeFavBtnRef)"
+        (click)="getUserFavProds()"
         #favBtnRef
         type="button"
         class="hidden text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
@@ -184,6 +185,7 @@
       </button>
       <button
         (click)="removeProdFromFav(product._id, favBtnRef, removeFavBtnRef)"
+        (click)="getUserFavProds()"
         #removeFavBtnRef
         type="button"
         class="text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
@@ -202,6 +204,7 @@
       }@else {
       <button
         (click)="addProductToFav(product._id, favBtnRef, removeFavBtnRef)"
+        (click)="getUserFavProds()"
         #favBtnRef
         type="button"
         class="text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
@@ -219,6 +222,7 @@
       </button>
       <button
         (click)="removeProdFromFav(product._id, favBtnRef, removeFavBtnRef)"
+        (click)="getUserFavProds()"
         #removeFavBtnRef
         type="button"
         class="hidden text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
