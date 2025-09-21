@@ -79,7 +79,7 @@ export class CheckoutComponent implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.status === 'success') {
-              window.open('#/allorders', '_self');
+              window.open(res.session.url, '_self');
             }
           },
           error: (err) => {
