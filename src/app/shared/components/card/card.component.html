@@ -35,13 +35,13 @@
         <div class="flex justify-between items-center">
           <button
             (click)="addProductToCart(product._id)"
-            (click)="showToaster(cartToasterRef)"
+            (click)="showToaster(cartToasterRef2)"
             type="button"
             class="text-white h-[35px] z-40 w-[35px] bg-green-300 rounded-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium text-sm relative"
           >
             <div
               class="opacity-0 absolute border rounded-full border-green-400 bg-green-100 text-green-400 text-12px"
-              #cartToasterRef
+              #cartToasterRef2
             >
               <app-toaster>+1</app-toaster>
             </div>
