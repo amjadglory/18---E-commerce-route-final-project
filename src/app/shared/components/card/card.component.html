@@ -15,6 +15,7 @@
       >
         <i class="fa-solid fa-square-xmark text-cyan-800 dark:text-cyan-50"></i>
       </button>
+
       <img
         class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-sm"
         [src]="product.imageCover"
@@ -31,12 +32,105 @@
         <p class="mb-3 font-normal text-cyan-800 dark:text-cyan-50">
           {{ product.description }}
         </p>
-        <a
-          [routerLink]="['/details', product.slug, product._id]"
-          class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm w px-5 py-2.5 text-center me-2 mb-2"
-        >
-          More Details
-        </a>
+        <div class="flex justify-between items-center">
+          <button
+            (click)="addProductToCart(product._id)"
+            (click)="showToaster(cartToasterRef)"
+            type="button"
+            class="text-white h-[35px] z-40 w-[35px] bg-green-300 rounded-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium text-sm relative"
+          >
+            <div
+              class="opacity-0 absolute border rounded-full border-green-400 bg-green-100 text-green-400 text-12px"
+              #cartToasterRef
+            >
+              <app-toaster>+1</app-toaster>
+            </div>
+            <i class="fa-solid fa-cart-plus"></i>
+          </button>
+          <a
+            [routerLink]="['/details', product.slug, product._id]"
+            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm w px-5 py-2.5 text-center mx-2 w-[80%]"
+          >
+            More Details
+          </a>
+          <div>
+            @if (currentUserFav.includes(product._id)) {
+            <button
+              (click)="addProductToFav(product._id, favBtnRef, removeFavBtnRef)"
+              #favBtnRef
+              type="button"
+              class="hidden text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+            >
+              @if (isLoading) {
+              <span class="flex justify-center mt-1"
+                ><img
+                  class="w-[15px] h-[13px] rotateY animate-bounce"
+                  src="/images/logo2.png"
+                  alt=""
+              /></span>
+              }@else if (!isLoading) {
+              <i class="fa-regular fa-heart"></i>
+              }
+            </button>
+            <button
+              (click)="
+                removeProdFromFav(product._id, favBtnRef, removeFavBtnRef)
+              "
+              #removeFavBtnRef
+              type="button"
+              class="text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+            >
+              @if (isLoading) {
+              <span class="flex justify-center mt-1"
+                ><img
+                  class="w-[15px] h-[13px] rotateY animate-bounce"
+                  src="/images/logo2.png"
+                  alt=""
+              /></span>
+              }@else if (!isLoading) {
+              <i class="fa-solid fa-heart"></i>
+              }
+            </button>
+            }@else {
+            <button
+              (click)="addProductToFav(product._id, favBtnRef, removeFavBtnRef)"
+              #favBtnRef
+              type="button"
+              class="text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+            >
+              @if (isLoading) {
+              <span class="flex justify-center mt-1"
+                ><img
+                  class="w-[15px] h-[13px] rotateY animate-bounce"
+                  src="/images/logo2.png"
+                  alt=""
+              /></span>
+              }@else if (!isLoading) {
+              <i class="fa-regular fa-heart"></i>
+              }
+            </button>
+            <button
+              (click)="
+                removeProdFromFav(product._id, favBtnRef, removeFavBtnRef)
+              "
+              #removeFavBtnRef
+              type="button"
+              class="hidden text-white h-[35px] z-40 w-[35px] bg-pink-300 rounded-full bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium text-sm relative"
+            >
+              @if (isLoading) {
+              <span class="flex justify-center mt-1"
+                ><img
+                  class="w-[15px] h-[13px] rotateY animate-bounce"
+                  src="/images/logo2.png"
+                  alt=""
+              /></span>
+              }@else if (!isLoading) {
+              <i class="fa-solid fa-heart"></i>
+              }
+            </button>
+            }
+          </div>
+        </div>
       </div>
     </a>
   </div>
