@@ -84,16 +84,17 @@ https://18-e-commerce-route-final-project.vercel.app/#/home
           <a
             routerLink="/cart"
             routerLinkActive="tRed"
-            class="block relative py-2 px-3 text-cyan-50 hover:text-green-600 transition-all rounded-sm md:bg-transparent md:p-0"
+            class="block py-2 px-3 text-cyan-50 hover:text-green-600 transition-all rounded-sm md:bg-transparent md:p-0"
             aria-current="page"
             >Cart<i
-              class="fa-solid fa-cart-shopping text-sm text-green-600 dark:text-green-300"
-            ></i>
-            <div
-              class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] p-0 font-bold text-black bg-cyan-100 border-2 border-white rounded-full -top-2.5 -end-2.5 dark:border-gray-900"
+              class="fa-solid fa-cart-shopping relative text-sm text-green-600 dark:text-green-300"
             >
-              {{ cartService.cartCounter }}
-            </div>
+              <div
+                class="absolute inline-flex items-center justify-center w-5 h-5 text-[12px] font-mono p-0 font-bold text-black bg-cyan-100 border-2 border-white rounded-full -top-3.5 -end-3.5 dark:border-gray-900"
+              >
+                {{ cartService.cartCounter }}
+              </div>
+            </i>
           </a>
         </li>
         <li>
