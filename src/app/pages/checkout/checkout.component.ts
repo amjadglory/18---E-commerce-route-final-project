@@ -60,7 +60,7 @@ export class CheckoutComponent implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.status === 'success') {
-              window.open('#/home', '_self');
+              window.open('#/allorders', '_self');
               console.log(res);
             }
           },
@@ -79,7 +79,7 @@ export class CheckoutComponent implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.status === 'success') {
-              window.open('#/home', '_self');
+              window.open('#/allorders', '_self');
             }
           },
           error: (err) => {
