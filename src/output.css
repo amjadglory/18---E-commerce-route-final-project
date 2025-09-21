@@ -987,8 +987,26 @@
   .start-0 {
     inset-inline-start: calc(var(--spacing) * 0);
   }
+  .-end-2 {
+    inset-inline-end: calc(var(--spacing) * -2);
+  }
+  .-end-2\.5 {
+    inset-inline-end: calc(var(--spacing) * -2.5);
+  }
+  .-end-3 {
+    inset-inline-end: calc(var(--spacing) * -3);
+  }
   .end-3 {
     inset-inline-end: calc(var(--spacing) * 3);
+  }
+  .-top-2 {
+    top: calc(var(--spacing) * -2);
+  }
+  .-top-2\.5 {
+    top: calc(var(--spacing) * -2.5);
+  }
+  .-top-3 {
+    top: calc(var(--spacing) * -3);
   }
   .top-0 {
     top: calc(var(--spacing) * 0);
@@ -1559,6 +1577,9 @@
   .h-2\.5 {
     height: calc(var(--spacing) * 2.5);
   }
+  .h-3 {
+    height: calc(var(--spacing) * 3);
+  }
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
@@ -1711,6 +1732,9 @@
   .w-2\.5 {
     width: calc(var(--spacing) * 2.5);
   }
+  .w-3 {
+    width: calc(var(--spacing) * 3);
+  }
   .w-4 {
     width: calc(var(--spacing) * 4);
   }
@@ -1744,9 +1768,6 @@
   .w-\[47\%\] {
     width: 47%;
   }
-  .w-\[50\%\] {
-    width: 50%;
-  }
   .w-\[50px\] {
     width: 50px;
   }
@@ -1758,9 +1779,6 @@
   }
   .w-\[80px\] {
     width: 80px;
-  }
-  .w-\[90\%\] {
-    width: 90%;
   }
   .w-\[100px\] {
     width: 100px;
@@ -2319,6 +2337,9 @@
   .border-transparent {
     border-color: transparent;
   }
+  .border-white {
+    border-color: var(--color-white);
+  }
   .apexcharts-active {
     .apexcharts-canvas .apexcharts-tooltip-series-group& .apexcharts-tooltip-y-group {
       padding: 0 !important;
@@ -2367,6 +2388,9 @@
   .bg-cyan-400 {
     background-color: var(--color-cyan-400);
   }
+  .bg-cyan-500 {
+    background-color: var(--color-cyan-500);
+  }
   .bg-cyan-700 {
     background-color: var(--color-cyan-700);
   }
@@ -2402,6 +2426,9 @@
   }
   .bg-red-300 {
     background-color: var(--color-red-300);
+  }
+  .bg-red-500 {
+    background-color: var(--color-red-500);
   }
   .bg-sky-100 {
     background-color: var(--color-sky-100);
@@ -2740,6 +2767,10 @@
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
   }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
   .apexcharts-datalabels {
     .apexcharts-canvas & .apexcharts-text.apexcharts-pie-label {
       font-size: 0.75rem,[object Object] !important;
@@ -2788,6 +2819,15 @@
     .dark .datatable-wrapper .datatable-bottom & {
       color: var(--color-gray-400);
     }
+  }
+  .text-\[6px\] {
+    font-size: 6px;
+  }
+  .text-\[8px\] {
+    font-size: 8px;
+  }
+  .text-\[10px\] {
+    font-size: 10px;
   }
   .text-\[12px\] {
     font-size: 12px;
@@ -3448,11 +3488,6 @@
       margin-block: calc(var(--spacing) * 3);
     }
   }
-  .md\:ms-2 {
-    @media (width >= 48rem) {
-      margin-inline-start: calc(var(--spacing) * 2);
-    }
-  }
   .md\:ms-4 {
     @media (width >= 48rem) {
       margin-inline-start: calc(var(--spacing) * 4);
@@ -3789,6 +3824,11 @@
       border-color: var(--color-gray-700);
     }
   }
+  .dark\:border-gray-900 {
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--color-gray-900);
+    }
+  }
   .dark\:border-transparent {
     @media (prefers-color-scheme: dark) {
       border-color: transparent;
@@ -4099,6 +4139,13 @@
     @media (prefers-color-scheme: dark) {
       &:focus {
         --tw-ring-color: var(--color-gray-600);
+      }
+    }
+  }
+  .dark\:focus\:ring-gray-700 {
+    @media (prefers-color-scheme: dark) {
+      &:focus {
+        --tw-ring-color: var(--color-gray-700);
       }
     }
   }

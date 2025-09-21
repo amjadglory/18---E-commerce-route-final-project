@@ -26,6 +26,7 @@ export class CardComponent implements OnInit {
     this.cartService.addProductToCart(prodId).subscribe({
       next: (res) => {
         console.log(res);
+        this.cartService.cartCounter = res.numOfCartItems;
       },
       error: (err) => {
         console.log(err);

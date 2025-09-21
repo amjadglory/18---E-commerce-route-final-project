@@ -32,6 +32,7 @@ export class CartComponent implements OnInit {
     this.cartService.deleteCartProduct(prodId).subscribe({
       next: (res) => {
         this.cartDetails = res.data;
+        this.cartService.cartCounter = res.numOfCartItems;
       },
       error: (err) => {
         console.log(err);

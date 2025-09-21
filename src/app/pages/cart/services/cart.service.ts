@@ -19,6 +19,7 @@ export class CartService {
       token: this.cookieService.get('token'),
     },
   };
+  cartCounter!:number;
 
   addProductToCart(prodId: string): Observable<any> {
     return this.httpClient.post(
