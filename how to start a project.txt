@@ -362,4 +362,45 @@ we use the token to :>
 - now we gonna do the add product to cart api, we gonna need a the token from the cookies and the product id from the card component,
 
 
-ngx infinit scroll
+36- interceptors:
+- it a gate the any request a response go throw it
+- we use it to handle alot of things like :
+  1- the headers we send with any request, insteed of sending the headers in every function that send a request to the api we can make the interceptor have this headers and every time the request being send it go throw the interceptor first to take the headers and then go to the api
+  2- tthe errors the comes from the response it take from the response when it come it go throw it and give the interceptor the errors to display it
+  3- we use it to display the loading screen and remove it insted of using the isLoading property and so on
+  - there's another uses to the interceptors butt those are the popular uses
+- we create the interceptors first before we crete the headers or reseve  the error then we build the logic depending on this
+- it is a function that being ecport so we can use it anywhere in the project
+- it takes 2 parameters :
+  1- request:=> it has all the data that related to the request lik the base url and the params
+  2- next:=> it's a function that take the request that comes from the parameter and send it to the next interseptors tell it reach the last interceptor and go to the server
+- any thing i wanna handle it with the request being sent it i write it in the scope of the interseptor BEFORE THE return
+- anything i wanna handle it with the response i handel it by the next, the next take the req eather it's an edited or not and give it to the next interceptors tell it reach tthe server
+
+(1)=> headers interceptors :
+  - firstt we remove any headers of an api method that was taking the headers, can cancle removing it but it's better to remove it
+  - we create the interceptor by write the comand ng g interceptor (interceptor name)
+  - so ig we wanna send the headers with any request we send so we send it with the req parameter, the req param to use it we need to take a copy of it cut it has it's own logic if i wanna edite in this logic i have to edit in a copy of it not the main logic cus somtime u will need to send the main logic of the req and other times u will need to send it with some changes, the req parameter has a method called clone that make make take an object that contain all the edit i wanna add to the request so to save the req with its clone method that have the edits we save it in the req param like this let newReq = req.clone({edits})
+  - inside the clone methods it has built in configration called setHeaders it's an object that save the headers on it < so we create an object on it and give it  the token on it as a proprty and then we assign the ttoken to it by the cookies like this:
+  req = req.clone({
+    setHeaders:{
+      token: cookiesServices.get('token');
+    }
+  })
+  - but we need to put this logect need to be happen in a conditiopn tat the token in the cookies, if not we send tthe main req that contan the original request so we do this condition if(cookies.check('token')) if it's true create the new req and send it with the next, if it's false send the main request with out tthe edites we create in the if condition
+  - to call the interceptor we run it with the httpClient it self cus it is the one that send the request, so we go to the app.config and on it we have a method called provide hhtpClient it take featers loke the withFetch, also we can send with it a feature called withInterceptor that takes the interceptors i wanna sen with the request in an array like this provideHttpClient(withFetch(),withInterceptors([headerInterceptor]))
+  but like this any request that will be sent it will contain the interceptors, but if an api that don;t need the interceptor what we should do osn't that a bad behavior? no it's not cus the backend handle this if he need the request without the interceptor it just ignore the interceptor and take the req itself
+  - but if u wanna control which request send the interceptor with it here is how, inside the if conition we create to make sure that the tokin is in the coockies we create another condition that we make sure if the ure of the request we wanna send don't contain a specific word that we send with the path like cart or wishlist if true we send the request with the headers if not we send thhe original req and we know that the url have those word or not from the req param it has a property called url so we use the string method includes that check if this word in the url or not like this:
+  if(req.url.includes('cart') || req.url.includes('wishlist'), req.url.includes('orders'))
+
+(2)=> errors interceptors :
+  - here we gonna make the interceptor handle the errors that comes from the api call
+  - to do this we gonna use an operator called rxjs
+  - we said that we handle anything in in that we wanna handle in the response we do that in the next method that in the inceptor, and thats why we gonna use the next method this time cus the errors comes with the response, any response that comes from api we can use the rxjs operators on it even outside the inceptors
+  - we use this rxjs operators cus we can't write any code after the return cus it will not work
+  - the next method return an observable, and any observable u can use the rxjs operartions on it like we can do in the api
+  - one of this rxjs operators called pipe, this operator make as add or update featuers any logic in our response then return this response after the adding this featuers, like any other pipe do it can add some featuers to anythings
+  - inside the pipe operator there's more operators, one of them called catchErrors, this operator catchany error that comes from the response
+  - insidr the catch error operator we create a callback functiopn that on it we reseve the error in itt's params parameter and now we have to return it to the next so it show the errors after the adds
+  - but the next method should return an observable to the interceptor function, to do that we use an operator inside the rxjs called throwError, this operator take the error from the parameter that in the catch error operator and return it as an observable, to do this we return it in the throw error as an arrow function that return the error
+  - but wait, we didn't add or update any featuers, we do that before we return the error to the throwError inside the catch error

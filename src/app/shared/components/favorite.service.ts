@@ -18,24 +18,14 @@ export class FavoriteService {
   };
   favProds: Array<Product> = [];
   AddFavProd(prodId: string): Observable<any> {
-    return this.httpClient.post(
-      environment.baseUrl + 'wishlist',
-      {
-        productId: prodId,
-      },
-      this.myHeaders
-    );
+    return this.httpClient.post(environment.baseUrl + 'wishlist', {
+      productId: prodId,
+    });
   }
   removeFavProd(prodId: string): Observable<any> {
-    return this.httpClient.delete(
-      environment.baseUrl + `wishlist/${prodId}`,
-      this.myHeaders
-    );
+    return this.httpClient.delete(environment.baseUrl + `wishlist/${prodId}`);
   }
   getFavProds(): Observable<any> {
-    return this.httpClient.get(
-      environment.baseUrl + 'wishlist',
-      this.myHeaders
-    );
+    return this.httpClient.get(environment.baseUrl + 'wishlist');
   }
 }

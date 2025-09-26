@@ -14,37 +14,23 @@ export class CartService {
   private readonly httpClient = inject(HttpClient);
   private readonly authService = inject(AuthService);
 
-  myHeaders: object = {
-    headers: {
-      token: this.cookieService.get('token'),
-    },
-  };
-  cartCounter!:number;
+  cartCounter!: number;
 
   addProductToCart(prodId: string): Observable<any> {
-    return this.httpClient.post(
-      environment.baseUrl + 'cart',
-      {
-        productId: prodId,
-      },
-      this.myHeaders
-    );
+    return this.httpClient.post(environment.baseUrl + 'cart', {
+      productId: prodId,
+    });
   }
   getUserCart(): Observable<any> {
-    return this.httpClient.get(environment.baseUrl + 'cart', this.myHeaders);
+    return this.httpClient.get(environment.baseUrl + 'cart');
   }
   deleteCartProduct(prodId: string): Observable<any> {
-    return this.httpClient.delete(
-      environment.baseUrl + `cart/${prodId}`,
-      this.myHeaders
-    );
+    return this.httpClient.delete(environment.baseUrl + `cart/${prodId}`);
   }
   updateProductCount(prodId: string, count: number): Observable<any> {
-    return this.httpClient.put(
-      environment.baseUrl + `cart/${prodId}`,
-      { count: count },
-      this.myHeaders
-    );
+    return this.httpClient.put(environment.baseUrl + `cart/${prodId}`, {
+      count: count,
+    });
   }
   checkoutCashSeasion(
     cartId: string | null,
@@ -52,16 +38,14 @@ export class CartService {
   ): Observable<any> {
     return this.httpClient.post(
       environment.baseUrl + `orders/${cartId}`,
-      addressData,
-      this.myHeaders
+      addressData
     );
   }
   checkoutSeasion(cartId: string | null, addressData: object): Observable<any> {
     return this.httpClient.post(
       environment.baseUrl +
         `orders/checkout-session/${cartId}?url=http://localhost:4200`,
-      addressData,
-      this.myHeaders
+      addressData
     );
   }
 
