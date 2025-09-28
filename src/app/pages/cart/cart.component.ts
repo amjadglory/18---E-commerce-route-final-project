@@ -44,6 +44,7 @@ export class CartComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.cartDetails = res.data;
+        this.cartService.cartCounter = res.numOfCartItems;
       },
       error: (err) => {
         console.log(err);

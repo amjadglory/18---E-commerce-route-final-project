@@ -27,15 +27,28 @@ export const routes: Routes = [
     component: AuthLayoutComponent,
     canActivate: [isLoggedInGuard],
     children: [
-      { path: 'login', component: LoginComponent, title: 'Login Page' },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./core/auth/login/login.component').then(
+            (c) => c.LoginComponent
+          ),
+        title: 'Login Page',
+      },
       {
         path: 'register',
-        component: RegisterComponent,
+        loadComponent: () =>
+          import('./core/auth/register/register.component').then(
+            (c) => c.RegisterComponent
+          ),
         title: 'Register Page',
       },
       {
         path: 'forget',
-        component: ForgetPassComponent,
+        loadComponent: () =>
+          import('./core/auth/forget-pass/forget-pass.component').then(
+            (c) => c.ForgetPassComponent
+          ),
         title: 'Forget Password',
       },
     ],
@@ -46,42 +59,84 @@ export const routes: Routes = [
     component: BlankLayoutComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'home', component: HomeComponent, title: 'BoycottMarket' },
-      { path: 'cart', component: CartComponent, title: 'Cart Page' },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./pages/home/home.component').then((c) => c.HomeComponent),
+        title: 'BoycottMarket',
+      },
+      {
+        path: 'cart',
+        loadComponent: () =>
+          import('./pages/cart/cart.component').then((c) => c.CartComponent),
+        title: 'Cart Page',
+      },
       {
         path: 'favorite',
-        component: FavoriteComponent,
+        loadComponent: () =>
+          import('./pages/favorite/favorite.component').then(
+            (c) => c.FavoriteComponent
+          ),
         title: 'Favorite Page',
       },
       {
         path: 'products',
-        component: ProductsComponent,
+        loadComponent: () =>
+          import('./pages/products/products.component').then(
+            (c) => c.ProductsComponent
+          ),
         title: 'Products Page',
       },
-      { path: 'brands', component: BrandsComponent, title: 'Brands Page' },
+      {
+        path: 'brands',
+        loadComponent: () =>
+          import('./pages/brands/brands.component').then(
+            (c) => c.BrandsComponent
+          ),
+        title: 'Brands Page',
+      },
       {
         path: 'categories',
-        component: CategoriesComponent,
+        loadComponent: () =>
+          import('./pages/categories/categories.component').then(
+            (c) => c.CategoriesComponent
+          ),
         title: 'Categories Page',
       },
       {
         path: 'checkout/:id',
-        component: CheckoutComponent,
+        loadComponent: () =>
+          import('./pages/checkout/checkout.component').then(
+            (c) => c.CheckoutComponent
+          ),
         title: 'Checkout Page',
       },
       {
         path: 'details/:prodSlug/:prodId',
-        component: DetailsComponent,
+        loadComponent: () =>
+          import('./pages/details/details.component').then(
+            (c) => c.DetailsComponent
+          ),
         title: 'Details Page',
       },
       {
         path: 'allorders',
-        component: AllordersComponent,
+        loadComponent: () =>
+          import('./pages/allorders/allorders.component').then(
+            (c) => c.AllordersComponent
+          ),
         title: 'All orders Page',
       },
     ],
   },
 
   // not found route
-  { path: '**', component: NotfoundComponent, title: 'Not Found Page' },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/notfound/notfound.component').then(
+        (c) => c.NotfoundComponent
+      ),
+    title: 'Not Found Page',
+  },
 ];

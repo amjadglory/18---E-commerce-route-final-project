@@ -404,3 +404,9 @@ we use the token to :>
   - insidr the catch error operator we create a callback functiopn that on it we reseve the error in itt's params parameter and now we have to return it to the next so it show the errors after the adds
   - but the next method should return an observable to the interceptor function, to do that we use an operator inside the rxjs called throwError, this operator take the error from the parameter that in the catch error operator and return it as an observable, to do this we return it in the throw error as an arrow function that return the error
   - but wait, we didn't add or update any featuers, we do that before we return the error to the throwError inside the catch error
+
+37- behavior subject:
+- when u create a proprty in a service to make it sharable between the components u only can access it's first value only but if thid propprty's value updated it not being updated in the property again it only runs once, to make it know the updates when it happen we need to make it can be subscribed like any api call
+- we can make any property can be subscribed with the behavior subject this subject make u can subcribe to any proprty in your service so u can make any changes happen to the value of this proprty it being updated every where we use this proprty
+- to make the proprty a behavior subject u assign the property to a new behaviorSubject(initial value) and also give the proprty a data type called behaviorSubject<data type>
+- so once u do that u can send data to this proprty by the next method and to get the data that in this proprty u use the subscribe method on it, if u try to get the data from the get method it will give u the first value of this proprty but it will not be updated

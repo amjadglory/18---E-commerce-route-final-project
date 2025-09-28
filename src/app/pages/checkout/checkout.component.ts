@@ -62,6 +62,7 @@ export class CheckoutComponent implements OnInit {
             if (res.status === 'success') {
               window.open('#/allorders', '_self');
               console.log(res);
+              this.cartService.cartCounter = 0;
             }
           },
           error: (err) => {
@@ -80,6 +81,7 @@ export class CheckoutComponent implements OnInit {
           next: (res) => {
             if (res.status === 'success') {
               window.open(res.session.url, '_self');
+              this.cartService.cartCounter = 0;
             }
           },
           error: (err) => {
